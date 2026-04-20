@@ -3,119 +3,228 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Tools 下载站</title>
+<title>Crypto Tools</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    background: #0f1117;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #080b10;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    color: #e8edf5;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
   }
 
   .container {
-    max-width: 560px;
+    max-width: 480px;
     width: 100%;
+    position: relative;
+    z-index: 1;
   }
 
   .header {
     text-align: center;
     margin-bottom: 48px;
+    position: relative;
+  }
+
+  .header::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+    margin: 16px auto 0;
   }
 
   .header h1 {
-    color: #f0f6fc;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
-    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    color: #ffffff;
   }
 
   .header p {
-    color: #8b949e;
-    font-size: 16px;
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: 6px;
+    letter-spacing: 0.3px;
   }
 
   .cards {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
   }
 
   .card {
-    background: #161b22;
-    border: 1px solid #30363d;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 16px;
-    padding: 28px 32px;
+    padding: 24px;
     display: flex;
     align-items: center;
-    gap: 24px;
-    transition: border-color 0.2s;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
     text-decoration: none;
+    transition: border-color 0.3s, transform 0.2s;
+    backdrop-filter: blur(12px);
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
   }
 
   .card:hover {
-    border-color: #58a6ff;
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+  }
+
+  .card:hover::before {
+    opacity: 1;
   }
 
   .card-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 14px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
-    flex-shrink: 0;
-  }
-
-  .card-tp .card-icon { background: #e8f5e9; }
-  .card-ave .card-icon { background: #fff3e0; }
-
-  .card-info { flex: 1; }
-
-  .card-title {
-    color: #f0f6fc;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .card-desc {
-    color: #8b949e;
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-
-  .card-size {
-    color: #6e7681;
-    font-size: 13px;
-  }
-
-  .card-arrow {
-    color: #8b949e;
     font-size: 24px;
     flex-shrink: 0;
-    transition: transform 0.2s, color 0.2s;
+    position: relative;
   }
 
-  .card:hover .card-arrow {
-    transform: translateX(4px);
-    color: #f0f6fc;
+  .card-tp .card-icon { background: rgba(34, 197, 94, 0.12); }
+  .card-ave .card-icon { background: rgba(251, 191, 36, 0.12); }
+  .card-musk .card-icon { background: rgba(168, 85, 247, 0.12); }
+
+  .card-body { flex: 1; min-width: 0; }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f3f4f6;
+    margin-bottom: 3px;
+  }
+
+  .card-sub {
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  .card-action {
+    flex-shrink: 0;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-download {
+    background: rgba(255,255,255,0.08);
+    color: #d1d5db;
+    text-decoration: none;
+  }
+
+  .btn-download:hover {
+    background: rgba(255,255,255,0.14);
+    color: #fff;
+  }
+
+  .btn-copy {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+  }
+
+  .btn-copy:hover {
+    background: rgba(59, 130, 246, 0.25);
+    color: #93c5fd;
+  }
+
+  .btn-copy.copied {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+  }
+
+  .toast {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-80px);
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 999;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
   }
 
   .footer {
     text-align: center;
-    margin-top: 48px;
-    color: #484f58;
-    font-size: 13px;
+    margin-top: 40px;
+    color: #374151;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+  }
+
+  @media (max-width: 400px) {
+    .card { padding: 18px; }
+    .card-title { font-size: 15px; }
+    .btn { padding: 7px 12px; font-size: 12px; }
   }
 </style>
 </head>
 <body>
+  <div class="toast" id="toast">✓ 已复制成功</div>
+
   <div class="container">
     <div class="header">
       <h1>Crypto Tools</h1>
@@ -123,28 +232,62 @@
     </div>
 
     <div class="cards">
+      <!-- 马斯克swap -->
+      <div class="card card-musk">
+        <div class="card-icon">🟣</div>
+        <div class="card-body">
+          <div class="card-title">马斯克 Swap</div>
+          <div class="card-sub">去中心化交易平台</div>
+        </div>
+        <div class="card-action">
+          <button class="btn btn-copy" id="copyMusk" onclick="copyMusk()">复制链接</button>
+        </div>
+      </div>
+
+      <!-- TP钱包 -->
       <a class="card card-tp" href="https://github.com/CONS-CTO/crypto-tools/releases/download/v1.0.0/TP.apk" target="_blank">
         <div class="card-icon">💳</div>
-        <div class="card-info">
+        <div class="card-body">
           <div class="card-title">TP 钱包</div>
-          <div class="card-desc">TokenPocket 安全多链钱包</div>
-          <div class="card-size">113.3 MB</div>
+          <div class="card-sub">TokenPocket 安全多链钱包 · 113.3 MB</div>
         </div>
-        <div class="card-arrow">→</div>
+        <div class="card-action">
+          <span class="btn btn-download">下载 →</span>
+        </div>
       </a>
 
+      <!-- AVE -->
       <a class="card card-ave" href="https://github.com/CONS-CTO/crypto-tools/releases/download/v1.0.0/ave.apk" target="_blank">
         <div class="card-icon">🪙</div>
-        <div class="card-info">
+        <div class="card-body">
           <div class="card-title">AVE</div>
-          <div class="card-desc">Web3 生态应用平台</div>
-          <div class="card-size">163.6 MB</div>
+          <div class="card-sub">Web3 生态应用平台 · 163.6 MB</div>
         </div>
-        <div class="card-arrow">→</div>
+        <div class="card-action">
+          <span class="btn btn-download">下载 →</span>
+        </div>
       </a>
     </div>
 
     <div class="footer">仅提供官方版本下载 · 建议从官网获取最新版</div>
   </div>
+
+  <script>
+    function copyMusk() {
+      const url = "https://muskswap.club/?utm_source=tokenpocket&inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0x41BFb247acc8E600174C20b0eC9Df148B9d967A8";
+      navigator.clipboard.writeText(url).then(() => {
+        const btn = document.getElementById("copyMusk");
+        const toast = document.getElementById("toast");
+        btn.textContent = "已复制";
+        btn.classList.add("copied");
+        toast.classList.add("show");
+        setTimeout(() => {
+          toast.classList.remove("show");
+          btn.textContent = "复制链接";
+          btn.classList.remove("copied");
+        }, 2000);
+      });
+    }
+  </script>
 </body>
 </html>
