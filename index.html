@@ -1,209 +1,150 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web3 Tools - 下载中心</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
-      min-height: 100vh;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Tools 下载站</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    .container {
-      max-width: 600px;
-      width: 100%;
-    }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #0f1117;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
 
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+  .container {
+    max-width: 560px;
+    width: 100%;
+  }
 
-    .logo {
-      font-size: 48px;
-      margin-bottom: 16px;
-    }
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
 
-    .title {
-      font-size: 32px;
-      font-weight: 700;
-      background: linear-gradient(90deg, #00d4ff, #7b2dff, #ff2d92);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 8px;
-    }
+  .header h1 {
+    color: #f0f6fc;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
 
-    .subtitle {
-      color: #888;
-      font-size: 16px;
-    }
+  .header p {
+    color: #8b949e;
+    font-size: 16px;
+  }
 
-    .cards {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
-    .card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 24px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
+  .card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    transition: border-color 0.2s;
+    text-decoration: none;
+  }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+  .card:hover {
+    border-color: #58a6ff;
+  }
 
-    .card:hover::before {
-      opacity: 1;
-    }
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
 
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
+  .card-tp .card-icon { background: #e8f5e9; }
+  .card-ave .card-icon { background: #fff3e0; }
 
-    .card-tp { --accent: #2980ff; }
-    .card-ave { --accent: #9b59ff; }
+  .card-info { flex: 1; }
 
-    .card-content {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
+  .card-title {
+    color: #f0f6fc;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
 
-    .card-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--accent), rgba(255,255,255,0.1));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      flex-shrink: 0;
-    }
+  .card-desc {
+    color: #8b949e;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
 
-    .card-info {
-      flex: 1;
-    }
+  .card-size {
+    color: #6e7681;
+    font-size: 13px;
+  }
 
-    .card-name {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
+  .card-arrow {
+    color: #8b949e;
+    font-size: 24px;
+    flex-shrink: 0;
+    transition: transform 0.2s, color 0.2s;
+  }
 
-    .card-desc {
-      color: #888;
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
+  .card:hover .card-arrow {
+    transform: translateX(4px);
+    color: #f0f6fc;
+  }
 
-    .card-size {
-      color: #666;
-      font-size: 12px;
-    }
-
-    .card-arrow {
-      color: var(--accent);
-      font-size: 24px;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover .card-arrow {
-      transform: translateX(4px);
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #444;
-      font-size: 12px;
-    }
-
-    .footer a {
-      color: #666;
-      text-decoration: none;
-    }
-
-    .footer a:hover {
-      color: #888;
-    }
-
-    @media (max-width: 480px) {
-      .title { font-size: 24px; }
-      .card-content { flex-direction: column; text-align: center; }
-      .card-arrow { display: none; }
-    }
-  </style>
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    color: #484f58;
+    font-size: 13px;
+  }
+</style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <div class="logo">🚀</div>
-      <h1 class="title">Web3 Tools</h1>
-      <p class="subtitle">加密货币工具下载中心</p>
+      <h1>Crypto Tools</h1>
+      <p>官方版本 · 安全下载</p>
     </div>
 
     <div class="cards">
-      <a href="https://github.com/CONS-CTO/crypto-tools/releases/download/v1.0.0/TP.apk" class="card card-tp">
-        <div class="card-content">
-          <div class="card-icon">💳</div>
-          <div class="card-info">
-            <div class="card-name">TP 钱包</div>
-            <div class="card-desc">TokenPocket - 安全多链加密货币钱包</div>
-            <div class="card-size">113.3 MB</div>
-          </div>
-          <div class="card-arrow">→</div>
+      <a class="card card-tp" href="https://github.com/CONS-CTO/crypto-tools/releases/download/v1.0.0/TP.apk" target="_blank">
+        <div class="card-icon">💳</div>
+        <div class="card-info">
+          <div class="card-title">TP 钱包</div>
+          <div class="card-desc">TokenPocket 安全多链钱包</div>
+          <div class="card-size">113.3 MB</div>
         </div>
+        <div class="card-arrow">→</div>
       </a>
 
-      <a href="https://github.com/CONS-CTO/crypto-tools/releases/download/v1.0.0/ave.apk" class="card card-ave">
-        <div class="card-content">
-          <div class="card-icon">🪙</div>
-          <div class="card-info">
-            <div class="card-name">AVE</div>
-            <div class="card-desc">Web3 生态应用平台</div>
-            <div class="card-size">163.6 MB</div>
-          </div>
-          <div class="card-arrow">→</div>
+      <a class="card card-ave" href="https://github.com/CONS-CTO/crypto-tools/releases/download/v1.0.0/ave.apk" target="_blank">
+        <div class="card-icon">🪙</div>
+        <div class="card-info">
+          <div class="card-title">AVE</div>
+          <div class="card-desc">Web3 生态应用平台</div>
+          <div class="card-size">163.6 MB</div>
         </div>
+        <div class="card-arrow">→</div>
       </a>
     </div>
 
-    <div class="footer">
-      <p>点击卡片即可下载 · 无需注册登录</p>
-      <p style="margin-top: 8px;">
-        <a href="https://github.com/CONS-CTO/crypto-tools" target="_blank">GitHub 源码</a>
-        · 
-        <a href="https://github.com/CONS-CTO/crypto-tools/releases" target="_blank">所有版本</a>
-      </p>
-    </div>
+    <div class="footer">仅提供官方版本下载 · 建议从官网获取最新版</div>
   </div>
 </body>
 </html>
