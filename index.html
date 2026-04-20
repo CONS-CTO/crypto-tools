@@ -9,7 +9,7 @@
 
   body {
     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    background: #f4f6fa;
+    background: #f0f2f7;
     min-height: 100vh;
     padding: 48px 16px;
     color: #1a1d24;
@@ -22,30 +22,41 @@
 
   .header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 36px;
   }
 
   .header h1 {
-    font-size: 30px;
+    font-size: 34px;
     font-weight: 800;
     color: #0f172a;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.8px;
   }
 
   .header p {
-    color: #64748b;
-    font-size: 14px;
+    color: #7c8594;
+    font-size: 15px;
     margin-top: 6px;
   }
 
-  .section-title {
-    font-size: 11px;
-    font-weight: 600;
-    color: #94a3b8;
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #3b82f6;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
+    letter-spacing: 1px;
     margin-bottom: 12px;
     margin-left: 4px;
+  }
+
+  .section-label::before {
+    content: "";
+    width: 3px;
+    height: 14px;
+    background: #3b82f6;
+    border-radius: 2px;
   }
 
   .cards {
@@ -58,58 +69,58 @@
   .card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 14px;
-    padding: 20px 22px;
+    border-radius: 16px;
+    padding: 22px 24px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 18px;
     text-decoration: none;
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
     cursor: pointer;
   }
 
   .card:hover {
-    border-color: #cbd5e1;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border-color: #3b82f6;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
     transform: translateY(-1px);
   }
 
   .card-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 11px;
+    width: 52px;
+    height: 52px;
+    border-radius: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 26px;
     flex-shrink: 0;
   }
 
-  .card-tp .card-icon { background: #f0fdf4; }
+  .card-tp .card-icon { background: #ecfdf5; }
   .card-ave .card-icon { background: #fffbeb; }
   .card-musk .card-icon { background: #faf5ff; }
 
   .card-body { flex: 1; min-width: 0; }
 
   .card-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 2px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 4px;
   }
 
   .card-sub {
-    font-size: 12px;
-    color: #94a3b8;
+    font-size: 14px;
+    color: #7c8594;
   }
 
   .card-action { flex-shrink: 0; }
 
   .btn {
-    padding: 7px 15px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 500;
+    padding: 9px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
     border: none;
     transition: all 0.2s;
@@ -128,7 +139,7 @@
 
   .btn-copy {
     background: #eff6ff;
-    color: #3b82f6;
+    color: #2563eb;
   }
 
   .btn-copy:hover {
@@ -137,31 +148,32 @@
 
   .btn-copy.copied {
     background: #f0fdf4;
-    color: #22c55e;
+    color: #16a34a;
   }
 
-  /* Info section */
-  .info-section { margin-bottom: 32px; }
-
+  /* Info card */
   .info-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 14px;
+    border-radius: 16px;
     overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
   }
 
-  /* Tax cards */
+  /* Tax section */
   .tax-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    padding: 18px;
+    padding: 20px;
+    background: #f8fafc;
+    border-bottom: 1px solid #f1f5f9;
   }
 
   .tax-card {
-    background: #f8fafc;
-    border-radius: 12px;
-    padding: 16px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 18px;
     border: 1px solid #e2e8f0;
   }
 
@@ -169,46 +181,45 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
 
-  .tax-card-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  .tax-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #334155;
   }
 
   .tax-badge {
-    font-size: 13px;
-    font-weight: 700;
-    padding: 2px 10px;
+    font-size: 15px;
+    font-weight: 800;
+    padding: 3px 12px;
     border-radius: 20px;
   }
 
   .tax-badge.buy {
     background: #dbeafe;
-    color: #2563eb;
+    color: #1d4ed8;
   }
 
   .tax-badge.sell {
     background: #fee2e2;
-    color: #dc2626;
+    color: #b91c1c;
   }
 
   .tax-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 5px 0;
-    font-size: 13px;
-    color: #475569;
+    gap: 10px;
+    padding: 7px 0;
+    font-size: 15px;
+    color: #334155;
+    font-weight: 500;
   }
 
   .tax-dot {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     flex-shrink: 0;
   }
@@ -218,95 +229,92 @@
   .dot-lp { background: #22c55e; }
 
   .tax-item span {
-    font-size: 11px;
+    font-size: 13px;
     color: #94a3b8;
     margin-left: auto;
+    font-weight: 600;
   }
 
-  /* Contract info */
-  .contract-section { padding: 0 18px 18px; }
+  /* Contract section */
+  .contract-section { padding: 20px; }
+
+  .contract-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+  }
 
   .contract-row {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    padding: 12px 0;
-  }
-
-  .contract-row + .contract-row {
-    border-top: 1px solid #f1f5f9;
+    margin-bottom: 12px;
   }
 
   .contract-label {
-    font-size: 12px;
+    font-size: 13px;
     color: #94a3b8;
-    width: 52px;
+    width: 48px;
     flex-shrink: 0;
     padding-top: 2px;
   }
 
   .contract-key {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
-    color: #334155;
-    margin-bottom: 3px;
-  }
-
-  .contract-desc {
-    font-size: 12px;
-    color: #94a3b8;
-    line-height: 1.5;
+    color: #1e293b;
+    margin-bottom: 4px;
   }
 
   .addr-box {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-top: 6px;
+    margin-top: 4px;
   }
 
   .addr-text {
-    font-size: 11px;
-    color: #64748b;
+    font-size: 12px;
+    color: #475569;
     font-family: "SF Mono", "Fira Code", monospace;
     background: #f8fafc;
-    padding: 6px 10px;
-    border-radius: 7px;
+    padding: 8px 12px;
+    border-radius: 8px;
     border: 1px solid #e2e8f0;
     word-break: break-all;
-    line-height: 1.5;
+    line-height: 1.6;
     flex: 1;
   }
 
   .btn-copy-addr {
     flex-shrink: 0;
-    padding: 6px 12px;
-    border-radius: 7px;
-    font-size: 12px;
-    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
     cursor: pointer;
     border: 1px solid #e2e8f0;
     background: #ffffff;
-    color: #64748b;
+    color: #2563eb;
     transition: all 0.2s;
   }
 
   .btn-copy-addr:hover {
     border-color: #3b82f6;
-    color: #3b82f6;
     background: #eff6ff;
   }
 
   .btn-copy-addr.copied {
-    border-color: #22c55e;
-    color: #22c55e;
+    border-color: #16a34a;
+    color: #16a34a;
     background: #f0fdf4;
   }
 
   .footer {
     text-align: center;
-    color: #cbd5e1;
-    font-size: 12px;
+    color: #c1c8d4;
+    font-size: 13px;
     margin-top: 40px;
   }
 
@@ -318,11 +326,11 @@
     background: #ffffff;
     border: 1px solid #e2e8f0;
     box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-    color: #22c55e;
-    padding: 10px 24px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
+    color: #16a34a;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     z-index: 999;
     pointer-events: none;
@@ -337,12 +345,13 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #22c55e;
+    background: #16a34a;
   }
 
   @media (max-width: 400px) {
     .addr-box { flex-direction: column; align-items: flex-start; }
     .btn-copy-addr { width: 100%; text-align: center; }
+    .card { padding: 18px; }
   }
 </style>
 </head>
@@ -358,7 +367,7 @@
       <p>官方版本 · 安全下载</p>
     </div>
 
-    <div class="section-title">下载</div>
+    <div class="section-label">下载</div>
     <div class="cards">
       <div class="card card-musk" onclick="copyLink('musk')">
         <div class="card-icon">🟣</div>
@@ -394,12 +403,12 @@
       </a>
     </div>
 
-    <div class="section-title">CONS 代币信息</div>
+    <div class="section-label">CONS 代币信息</div>
     <div class="info-card">
       <div class="tax-grid">
         <div class="tax-card">
           <div class="tax-card-header">
-            <div class="tax-card-label">买入</div>
+            <div class="tax-label">买入</div>
             <div class="tax-badge buy">3%</div>
           </div>
           <div class="tax-item">
@@ -421,7 +430,7 @@
 
         <div class="tax-card">
           <div class="tax-card-header">
-            <div class="tax-card-label">卖出</div>
+            <div class="tax-label">卖出</div>
             <div class="tax-badge sell">4%</div>
           </div>
           <div class="tax-item">
@@ -445,27 +454,12 @@
       <div class="contract-section">
         <div class="contract-row">
           <div class="contract-label">合约</div>
-          <div class="info-value" style="flex:1;">
+          <div style="flex:1;">
             <div class="contract-key">合约地址</div>
-            <div class="contract-desc">BSC (Binance Smart Chain)</div>
             <div class="addr-box">
               <div class="addr-text" id="consAddr">0x41bfb247acc8e600174c20b0ec9df148b9d967a8</div>
               <button class="btn-copy-addr" id="btnConsAddr" onclick="copyAddr()">复制</button>
             </div>
-          </div>
-        </div>
-        <div class="contract-row">
-          <div class="contract-label">分发</div>
-          <div class="info-value" style="flex:1;">
-            <div class="contract-key">持币地址分红规则</div>
-            <div class="contract-desc">持有 CONS 可按持币量占比参与分红，每个周期按地址持有量分配奖励</div>
-          </div>
-        </div>
-        <div class="contract-row">
-          <div class="contract-label">空投</div>
-          <div class="info-value" style="flex:1;">
-            <div class="contract-key">邀请好友奖励</div>
-            <div class="contract-desc">每邀请一位好友参与，可获得额外 CONS 代币奖励，具体规则见社区公告</div>
           </div>
         </div>
       </div>
