@@ -9,147 +9,107 @@
 
   body {
     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    background: #080b10;
+    background: #f4f6fa;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    color: #e8edf5;
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background:
-      radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
+    padding: 48px 16px;
+    color: #1a1d24;
   }
 
   .container {
-    max-width: 480px;
-    width: 100%;
-    position: relative;
-    z-index: 1;
+    max-width: 520px;
+    margin: 0 auto;
   }
 
+  /* Header */
   .header {
     text-align: center;
-    margin-bottom: 48px;
-    position: relative;
-  }
-
-  .header::after {
-    content: "";
-    display: block;
-    width: 40px;
-    height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    border-radius: 2px;
-    margin: 16px auto 0;
+    margin-bottom: 40px;
   }
 
   .header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: #ffffff;
+    font-size: 30px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
   }
 
   .header p {
-    color: #6b7280;
+    color: #64748b;
     font-size: 14px;
     margin-top: 6px;
-    letter-spacing: 0.3px;
   }
 
+  /* Section titles */
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 12px;
+    margin-left: 4px;
+  }
+
+  /* Cards */
   .cards {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
+    margin-bottom: 32px;
   }
 
   .card {
-    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 16px;
-    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px 22px;
     display: flex;
     align-items: center;
-    gap: 18px;
-    position: relative;
-    overflow: hidden;
+    gap: 16px;
     text-decoration: none;
-    transition: border-color 0.3s, transform 0.2s;
-    backdrop-filter: blur(12px);
-  }
-
-  .card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 16px;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    cursor: pointer;
   }
 
   .card:hover {
-    border-color: rgba(255,255,255,0.15);
-    transform: translateY(-2px);
-  }
-
-  .card:hover::before {
-    opacity: 1;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    transform: translateY(-1px);
   }
 
   .card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 22px;
     flex-shrink: 0;
-    position: relative;
   }
 
-  .card-tp .card-icon { background: rgba(34, 197, 94, 0.12); }
-  .card-ave .card-icon { background: rgba(251, 191, 36, 0.12); }
-  .card-musk .card-icon { background: rgba(168, 85, 247, 0.12); }
+  .card-tp .card-icon { background: #f0fdf4; }
+  .card-ave .card-icon { background: #fffbeb; }
+  .card-musk .card-icon { background: #faf5ff; }
 
   .card-body { flex: 1; min-width: 0; }
 
   .card-title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    color: #f3f4f6;
-    margin-bottom: 3px;
+    color: #1e293b;
+    margin-bottom: 2px;
   }
 
   .card-sub {
     font-size: 12px;
-    color: #6b7280;
+    color: #94a3b8;
   }
 
-  .card-action {
-    flex-shrink: 0;
-  }
+  .card-action { flex-shrink: 0; }
 
   .btn {
-    padding: 8px 16px;
+    padding: 7px 15px;
     border-radius: 8px;
     font-size: 13px;
     font-weight: 500;
@@ -160,70 +120,174 @@
   }
 
   .btn-download {
-    background: rgba(255,255,255,0.08);
-    color: #d1d5db;
-    text-decoration: none;
+    background: #f1f5f9;
+    color: #475569;
   }
 
   .btn-download:hover {
-    background: rgba(255,255,255,0.14);
-    color: #fff;
+    background: #e2e8f0;
+    color: #1e293b;
   }
 
   .btn-copy {
-    background: rgba(59, 130, 246, 0.15);
-    color: #60a5fa;
+    background: #eff6ff;
+    color: #3b82f6;
   }
 
   .btn-copy:hover {
-    background: rgba(59, 130, 246, 0.25);
-    color: #93c5fd;
+    background: #dbeafe;
   }
 
   .btn-copy.copied {
-    background: rgba(34, 197, 94, 0.15);
-    color: #4ade80;
+    background: #f0fdf4;
+    color: #22c55e;
   }
 
+  /* Info section */
+  .info-section {
+    margin-bottom: 32px;
+  }
+
+  .info-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 22px;
+  }
+
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+  }
+
+  .info-row + .info-row {
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .info-label {
+    font-size: 12px;
+    color: #94a3b8;
+    width: 56px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .info-value {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .info-key {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 3px;
+  }
+
+  .info-desc {
+    font-size: 12px;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+
+  .addr-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .addr-text {
+    font-size: 11px;
+    color: #64748b;
+    font-family: "SF Mono", "Fira Code", monospace;
+    background: #f8fafc;
+    padding: 6px 10px;
+    border-radius: 7px;
+    border: 1px solid #e2e8f0;
+    word-break: break-all;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .btn-addr-copy {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #64748b;
+    transition: all 0.2s;
+  }
+
+  .btn-addr-copy:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    background: #eff6ff;
+  }
+
+  .btn-addr-copy.copied {
+    border-color: #22c55e;
+    color: #22c55e;
+    background: #f0fdf4;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: #cbd5e1;
+    font-size: 12px;
+  }
+
+  /* Toast */
   .toast {
     position: fixed;
     top: 24px;
     left: 50%;
     transform: translateX(-50%) translateY(-80px);
-    background: rgba(34, 197, 94, 0.15);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    color: #4ade80;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    color: #22c55e;
     padding: 10px 24px;
     border-radius: 10px;
     font-size: 14px;
-    font-weight: 500;
-    backdrop-filter: blur(12px);
+    font-weight: 600;
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     z-index: 999;
     pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .toast.show {
     transform: translateX(-50%) translateY(0);
   }
 
-  .footer {
-    text-align: center;
-    margin-top: 40px;
-    color: #374151;
-    font-size: 12px;
-    letter-spacing: 0.3px;
+  .toast-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
   }
 
   @media (max-width: 400px) {
-    .card { padding: 18px; }
-    .card-title { font-size: 15px; }
-    .btn { padding: 7px 12px; font-size: 12px; }
+    .addr-box { flex-direction: column; align-items: flex-start; }
+    .btn-addr-copy { width: 100%; text-align: center; }
   }
 </style>
 </head>
 <body>
-  <div class="toast" id="toast">✓ 已复制成功</div>
+  <div class="toast" id="toast">
+    <div class="toast-dot"></div>
+    <span id="toastText">已复制成功</span>
+  </div>
 
   <div class="container">
     <div class="header">
@@ -231,16 +295,18 @@
       <p>官方版本 · 安全下载</p>
     </div>
 
+    <!-- Download section -->
+    <div class="section-title">下载</div>
     <div class="cards">
       <!-- 马斯克swap -->
-      <div class="card card-musk">
+      <div class="card card-musk" onclick="copyLink('musk')">
         <div class="card-icon">🟣</div>
         <div class="card-body">
           <div class="card-title">马斯克 Swap</div>
           <div class="card-sub">去中心化交易平台</div>
         </div>
         <div class="card-action">
-          <button class="btn btn-copy" id="copyMusk" onclick="copyMusk()">复制链接</button>
+          <span class="btn btn-copy" id="btnMusk">复制链接</span>
         </div>
       </div>
 
@@ -252,7 +318,7 @@
           <div class="card-sub">TokenPocket 安全多链钱包 · 113.3 MB</div>
         </div>
         <div class="card-action">
-          <span class="btn btn-download">下载 →</span>
+          <span class="btn btn-download">下载</span>
         </div>
       </a>
 
@@ -264,28 +330,87 @@
           <div class="card-sub">Web3 生态应用平台 · 163.6 MB</div>
         </div>
         <div class="card-action">
-          <span class="btn btn-download">下载 →</span>
+          <span class="btn btn-download">下载</span>
         </div>
       </a>
     </div>
 
-    <div class="footer">仅提供官方版本下载 · 建议从官网获取最新版</div>
+    <!-- CONS Info section -->
+    <div class="section-title">CONS 代币信息</div>
+    <div class="info-card">
+      <div class="info-row">
+        <div class="info-label">代币</div>
+        <div class="info-value">
+          <div class="info-key">CONS Token</div>
+          <div class="info-desc">社区生态治理代币</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">合约</div>
+        <div class="info-value">
+          <div class="info-key">合约地址</div>
+          <div class="info-desc">BSC (Binance Smart Chain)</div>
+          <div class="addr-box">
+            <div class="addr-text" id="consAddr">0x41bfb247acc8e600174c20b0ec9df148b9d967a8</div>
+            <button class="btn-addr-copy" id="btnConsAddr" onclick="copyAddr()">复制</button>
+          </div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">机制</div>
+        <div class="info-value">
+          <div class="info-key">持币分红机制</div>
+          <div class="info-desc">持有 CONS 享受社区生态分红奖励，持有越多分红越多</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">分发</div>
+        <div class="info-value">
+          <div class="info-key">持币地址分红规则</div>
+          <div class="info-desc">每个周期按持币量占比分配分红，持币地址需满足最低持有量要求</div>
+        </div>
+      </div>
+      <div class="info-row" style="border-top: 1px solid #f1f5f9; margin: 0 -22px; padding-left: 22px; padding-right: 22px;">
+        <div class="info-label">空投</div>
+        <div class="info-value">
+          <div class="info-key">邀请好友奖励</div>
+          <div class="info-desc">每邀请一位好友参与，可获得额外 CONS 代币奖励，具体规则见社区公告</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer" style="margin-top: 40px;">仅提供官方版本下载 · 建议从官网获取最新版</div>
   </div>
 
   <script>
-    function copyMusk() {
-      const url = "https://muskswap.club/?utm_source=tokenpocket&inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0x41BFb247acc8E600174C20b0eC9Df148B9d967A8";
-      navigator.clipboard.writeText(url).then(() => {
-        const btn = document.getElementById("copyMusk");
-        const toast = document.getElementById("toast");
+    function showToast(text) {
+      const toast = document.getElementById("toast");
+      document.getElementById("toastText").textContent = text;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2000);
+    }
+
+    function copyLink(type) {
+      const urls = {
+        musk: "https://muskswap.club/?utm_source=tokenpocket&inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0x41BFb247acc8E600174C20b0eC9Df148B9d967A8"
+      };
+      const btn = document.getElementById("btnMusk");
+      navigator.clipboard.writeText(urls[type]).then(() => {
         btn.textContent = "已复制";
         btn.classList.add("copied");
-        toast.classList.add("show");
-        setTimeout(() => {
-          toast.classList.remove("show");
-          btn.textContent = "复制链接";
-          btn.classList.remove("copied");
-        }, 2000);
+        showToast("链接已复制");
+        setTimeout(() => { btn.textContent = "复制链接"; btn.classList.remove("copied"); }, 2000);
+      });
+    }
+
+    function copyAddr() {
+      const addr = "0x41bfb247acc8e600174c20b0ec9df148b9d967a8";
+      const btn = document.getElementById("btnConsAddr");
+      navigator.clipboard.writeText(addr).then(() => {
+        btn.textContent = "已复制";
+        btn.classList.add("copied");
+        showToast("合约地址已复制");
+        setTimeout(() => { btn.textContent = "复制"; btn.classList.remove("copied"); }, 2000);
       });
     }
   </script>
