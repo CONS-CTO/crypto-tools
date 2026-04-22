@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Tools</title>
+<title>霸天虎CONS - 核心机制</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -16,41 +16,59 @@
   }
 
   .container {
-    max-width: 520px;
+    max-width: 600px;
     margin: 0 auto;
   }
 
-  .header {
+  /* ========== Hero ========== */
+  .hero {
     text-align: center;
-    margin-bottom: 36px;
+    margin-bottom: 48px;
   }
-
-  .header h1 {
-    font-size: 34px;
-    font-weight: 800;
+  .hero-badge {
+    display: inline-block;
+    background: #dbeafe;
+    border: 1px solid #bfdbfe;
+    color: #1d4ed8;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 16px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 38px;
+    font-weight: 900;
     color: #0f172a;
-    letter-spacing: -0.8px;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: #64748b;
+    font-weight: 500;
+  }
+  .hero-sub em {
+    color: #ea580c;
+    font-style: normal;
+    font-weight: 700;
   }
 
-  .header p {
-    color: #7c8594;
-    font-size: 15px;
-    margin-top: 6px;
-  }
-
+  /* ========== Section label ========== */
   .section-label {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     color: #3b82f6;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
     margin-left: 4px;
   }
-
   .section-label::before {
     content: "";
     width: 3px;
@@ -58,14 +76,21 @@
     background: #3b82f6;
     border-radius: 2px;
   }
+  .section-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
 
+  /* ========== Download cards ========== */
   .cards {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
   }
-
   .card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
@@ -78,44 +103,25 @@
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
     cursor: pointer;
   }
-
   .card:hover {
     border-color: #3b82f6;
     box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
     transform: translateY(-1px);
   }
-
   .card-icon {
-    width: 52px;
-    height: 52px;
+    width: 52px; height: 52px;
     border-radius: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-size: 26px;
     flex-shrink: 0;
   }
-
   .card-tp .card-icon { background: #ecfdf5; }
   .card-ave .card-icon { background: #fffbeb; }
   .card-musk .card-icon { background: #faf5ff; }
-
   .card-body { flex: 1; min-width: 0; }
-
-  .card-title {
-    font-size: 17px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 4px;
-  }
-
-  .card-sub {
-    font-size: 14px;
-    color: #7c8594;
-  }
-
+  .card-title { font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
+  .card-sub { font-size: 14px; color: #7c8594; }
   .card-action { flex-shrink: 0; }
-
   .btn {
     padding: 9px 18px;
     border-radius: 10px;
@@ -126,41 +132,78 @@
     transition: all 0.2s;
     white-space: nowrap;
   }
+  .btn-download { background: #f1f5f9; color: #475569; }
+  .btn-download:hover { background: #e2e8f0; color: #1e293b; }
+  .btn-copy { background: #eff6ff; color: #2563eb; }
+  .btn-copy:hover { background: #dbeafe; }
+  .btn-copy.copied { background: #f0fdf4; color: #16a34a; }
 
-  .btn-download {
-    background: #f1f5f9;
-    color: #475569;
-  }
-
-  .btn-download:hover {
-    background: #e2e8f0;
-    color: #1e293b;
-  }
-
-  .btn-copy {
-    background: #eff6ff;
-    color: #2563eb;
-  }
-
-  .btn-copy:hover {
-    background: #dbeafe;
-  }
-
-  .btn-copy.copied {
-    background: #f0fdf4;
-    color: #16a34a;
-  }
-
-  /* Info card */
+  /* ========== Info card ========== */
   .info-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 16px;
+    border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    margin-bottom: 40px;
+  }
+  .section-block {
+    padding: 20px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .section-block:last-child { border-bottom: none; }
+  .block-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .block-title .icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .icon-blue { background: #dbeafe; }
+  .icon-green { background: #dcfce7; }
+  .icon-orange { background: #ffedd5; }
+  .icon-purple { background: #f3e8ff; }
+  .icon-red { background: #fee2e2; }
+
+  /* ========== Tokenomics ========== */
+  .tokenomics-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 480px) { .tokenomics-row { grid-template-columns: 1fr; } }
+  .token-card {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+  }
+  .token-num { font-size: 28px; font-weight: 900; color: #1d4ed8; margin-bottom: 4px; }
+  .token-num.orange { color: #ea580c; }
+  .token-desc { font-size: 13px; color: #64748b; font-weight: 600; }
+  .token-note {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.6;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border-radius: 10px;
+    border-left: 3px solid #ea580c;
+    font-weight: 600;
   }
 
-  /* Tax section */
+  /* ========== Tax grid ========== */
   .tax-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -169,184 +212,236 @@
     background: #f8fafc;
     border-bottom: 1px solid #f1f5f9;
   }
-
+  @media (max-width: 480px) { .tax-grid { grid-template-columns: 1fr; } }
   .tax-card {
     background: #ffffff;
     border-radius: 14px;
     padding: 18px;
     border: 1px solid #e2e8f0;
   }
-
   .tax-card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 16px;
   }
-
-  .tax-label {
-    font-size: 15px;
-    font-weight: 700;
-    color: #334155;
-  }
-
+  .tax-label { font-size: 15px; font-weight: 700; color: #334155; }
   .tax-badge {
-    font-size: 15px;
-    font-weight: 800;
-    padding: 3px 12px;
-    border-radius: 20px;
+    font-size: 15px; font-weight: 800;
+    padding: 3px 14px; border-radius: 20px;
   }
-
-  .tax-badge.buy {
-    background: #dbeafe;
-    color: #1d4ed8;
-  }
-
-  .tax-badge.sell {
-    background: #fee2e2;
-    color: #b91c1c;
-  }
-
+  .tax-badge.buy { background: #dbeafe; color: #1d4ed8; }
+  .tax-badge.sell { background: #fee2e2; color: #b91c1c; }
   .tax-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
     padding: 7px 0;
-    font-size: 15px;
-    color: #334155;
-    font-weight: 500;
+    font-size: 15px; color: #334155; font-weight: 500;
   }
-
-  .tax-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .dot-burn { background: #f97316; }
-  .dot-market { background: #a855f7; }
-  .dot-lp { background: #22c55e; }
-
+  .tax-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-burn { background: #ea580c; }
+  .dot-market { background: #9333ea; }
+  .dot-lp { background: #16a34a; }
   .tax-item span {
-    font-size: 13px;
-    color: #94a3b8;
-    margin-left: auto;
-    font-weight: 600;
+    font-size: 13px; color: #94a3b8;
+    margin-left: auto; font-weight: 600;
   }
 
-  /* Contract section */
-  .contract-section { padding: 20px; }
-
-  .contract-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 12px;
+  /* ========== Security ========== */
+  .sec-list { display: flex; flex-direction: column; gap: 10px; }
+  .sec-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: #334155; font-weight: 500;
+  }
+  .sec-icon {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: #dcfce7;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0;
+    color: #16a34a;
   }
 
-  .contract-row {
-    display: flex;
-    align-items: flex-start;
+  /* ========== Role grid ========== */
+  .role-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
-
-  .contract-label {
-    font-size: 13px;
-    color: #94a3b8;
-    width: 48px;
-    flex-shrink: 0;
-    padding-top: 2px;
-  }
-
-  .contract-key {
-    font-size: 15px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 4px;
-  }
-
-  .addr-box {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 4px;
-  }
-
-  .addr-text {
-    font-size: 12px;
-    color: #475569;
-    font-family: "SF Mono", "Fira Code", monospace;
+  @media (max-width: 480px) { .role-grid { grid-template-columns: 1fr; } }
+  .role-card {
     background: #f8fafc;
-    padding: 8px 12px;
-    border-radius: 8px;
+    border-radius: 14px;
+    padding: 18px;
     border: 1px solid #e2e8f0;
-    word-break: break-all;
-    line-height: 1.6;
+  }
+  .role-badge {
+    display: inline-block;
+    font-size: 11px; font-weight: 800;
+    padding: 3px 10px; border-radius: 6px;
+    margin-bottom: 10px; letter-spacing: 0.5px;
+  }
+  .role-badge.fund { background: #f3e8ff; color: #7c3aed; border: 1px solid #e9d5ff; }
+  .role-badge.whale { background: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe; }
+  .role-name { font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+  .role-req { font-size: 13px; color: #64748b; margin-bottom: 8px; font-weight: 600; }
+  .role-rule {
+    font-size: 13px; color: #475569;
+    font-weight: 600; line-height: 1.7;
+    padding-left: 12px;
+    border-left: 2px solid #e2e8f0;
+    margin-top: 8px;
+  }
+  .role-rule strong { color: #1e293b; }
+
+  /* ========== Dividend ========== */
+  .dividend-box {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+    border: 1px solid #e2e8f0;
+  }
+  .dividend-title { font-size: 14px; font-weight: 800; color: #1e293b; margin-bottom: 10px; }
+  .dividend-row {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: #475569; font-weight: 600;
+    padding: 5px 0;
+  }
+  .div-dot { width: 6px; height: 6px; border-radius: 50%; background: #3b82f6; flex-shrink: 0; }
+
+  /* ========== Obligations ========== */
+  .obligation-row {
+    display: flex; gap: 8px;
+    margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .obligation-tag {
+    background: #dbeafe; border: 1px solid #bfdbfe;
+    color: #1d4ed8;
+    font-size: 13px; font-weight: 700;
+    padding: 5px 14px; border-radius: 20px;
+  }
+  .eliminate-note {
+    font-size: 13px; color: #64748b; font-weight: 600;
+    padding: 10px 14px;
+    background: #fff7ed;
+    border-radius: 10px;
+    border-left: 3px solid #ea580c;
+  }
+  .eliminate-note strong { color: #1e293b; }
+
+  /* ========== Trade rules ========== */
+  .trade-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 480px) { .trade-grid { grid-template-columns: 1fr; } }
+  .trade-card {
+    border-radius: 14px;
+    padding: 16px;
+    border: 1px solid;
+  }
+  .trade-card.red { background: #fff5f5; border-color: #fecaca; }
+  .trade-card.green { background: #f0fdf4; border-color: #bbf7d0; }
+  .trade-label {
+    font-size: 13px; font-weight: 800;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .trade-card.red .trade-label { color: #b91c1c; }
+  .trade-card.green .trade-label { color: #15803d; }
+  .trade-content { font-size: 14px; color: #475569; font-weight: 600; line-height: 1.7; }
+
+  /* ========== Penalty ========== */
+  .penalty-section { margin-bottom: 14px; }
+  .penalty-title {
+    font-size: 13px; font-weight: 800;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .penalty-title.purple { color: #7c3aed; }
+  .penalty-title.blue { color: #1d4ed8; }
+  .penalty-list { display: flex; flex-direction: column; gap: 7px; }
+  .penalty-item {
+    font-size: 13px; color: #475569; font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
+    line-height: 1.5;
+  }
+  .penalty-icon {
+    width: 18px; height: 18px;
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; flex-shrink: 0;
+  }
+  .penalty-icon.purple { background: #f3e8ff; color: #7c3aed; }
+  .penalty-icon.blue { background: #dbeafe; color: #1d4ed8; }
+  .penalty-icon.red { background: #fee2e2; color: #b91c1c; }
+
+  /* ========== Referral ========== */
+  .referral-box {
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 13px; color: #64748b;
+    font-weight: 600; line-height: 1.7;
+    border-left: 3px solid #f87171;
+  }
+  .referral-box strong { color: #b91c1c; }
+
+  /* ========== Contract ========== */
+  .contract-section { padding: 20px; }
+  .contract-row { display: flex; align-items: flex-start; gap: 12px; }
+  .contract-label { font-size: 13px; color: #94a3b8; width: 48px; flex-shrink: 0; padding-top: 2px; font-weight: 600; }
+  .contract-key { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+  .addr-box { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+  .addr-text {
+    font-size: 12px; color: #475569;
+    font-family: "SF Mono","Fira Code",monospace;
+    background: #f8fafc;
+    padding: 8px 12px; border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    word-break: break-all; line-height: 1.6;
     flex: 1;
   }
-
   .btn-copy-addr {
     flex-shrink: 0;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    border: 1px solid #e2e8f0;
-    background: #ffffff;
-    color: #2563eb;
-    transition: all 0.2s;
+    padding: 8px 14px; border-radius: 8px;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    border: 1px solid #e2e8f0; background: #ffffff;
+    color: #2563eb; transition: all 0.2s;
   }
+  .btn-copy-addr:hover { border-color: #3b82f6; background: #eff6ff; }
+  .btn-copy-addr.copied { border-color: #16a34a; color: #16a34a; background: #f0fdf4; }
 
-  .btn-copy-addr:hover {
-    border-color: #3b82f6;
-    background: #eff6ff;
-  }
-
-  .btn-copy-addr.copied {
-    border-color: #16a34a;
-    color: #16a34a;
-    background: #f0fdf4;
-  }
-
+  /* ========== Footer ========== */
   .footer {
     text-align: center;
     color: #c1c8d4;
     font-size: 13px;
-    margin-top: 40px;
+    margin-top: 48px;
+    padding-bottom: 20px;
+    font-weight: 600;
   }
 
+  /* ========== Toast ========== */
   .toast {
-    position: fixed;
-    top: 24px;
-    left: 50%;
+    position: fixed; top: 24px; left: 50%;
     transform: translateX(-50%) translateY(-80px);
     background: #ffffff;
     border: 1px solid #e2e8f0;
     box-shadow: 0 8px 32px rgba(0,0,0,0.12);
     color: #16a34a;
-    padding: 12px 28px;
-    border-radius: 12px;
-    font-size: 15px;
-    font-weight: 700;
+    padding: 12px 28px; border-radius: 12px;
+    font-size: 15px; font-weight: 700;
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    z-index: 999;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    z-index: 999; pointer-events: none;
+    display: flex; align-items: center; gap: 8px;
   }
-
   .toast.show { transform: translateX(-50%) translateY(0); }
-
-  .toast-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #16a34a;
-  }
+  .toast-dot { width: 8px; height: 8px; border-radius: 50%; background: #16a34a; }
 
   @media (max-width: 400px) {
     .addr-box { flex-direction: column; align-items: flex-start; }
@@ -362,12 +457,17 @@
   </div>
 
   <div class="container">
-    <div class="header">
-      <h1>Crypto Tools</h1>
-      <p>官方版本 · 安全下载</p>
+
+    <!-- ========== Hero ========== -->
+    <div class="hero">
+      <div class="hero-badge">BSC · 透明 · 通缩 · 自治</div>
+      <h1>霸天虎 CONS</h1>
+      <p class="hero-sub">发行总量 <em>100万枚</em> · 已销毁 <em>45万+枚</em> · 流通量持续减少</p>
     </div>
 
-    <div class="section-label">下载</div>
+    <!-- ========== 下载区 ========== -->
+    <div class="section-label">Download</div>
+    <div class="section-title">官方工具下载</div>
     <div class="cards">
       <div class="card card-musk" onclick="copyLink('musk')">
         <div class="card-icon">🟣</div>
@@ -403,59 +503,194 @@
       </a>
     </div>
 
-    <div class="section-label">CONS 代币信息</div>
-    <div class="info-card">
-      <div class="tax-grid">
-        <div class="tax-card">
-          <div class="tax-card-header">
-            <div class="tax-label">买入</div>
-            <div class="tax-badge buy">3%</div>
-          </div>
-          <div class="tax-item">
-            <div class="tax-dot dot-burn"></div>
-            永久销毁
-            <span>+1%</span>
-          </div>
-          <div class="tax-item">
-            <div class="tax-dot dot-market"></div>
-            营销红包
-            <span>+1%</span>
-          </div>
-          <div class="tax-item">
-            <div class="tax-dot dot-lp"></div>
-            LP 底池分红
-            <span>+1%</span>
-          </div>
-        </div>
+    <!-- ========== 核心机制 ========== -->
+    <div class="section-label">Core</div>
+    <div class="section-title">核心机制透明 · 通缩 · 自治</div>
 
-        <div class="tax-card">
-          <div class="tax-card-header">
-            <div class="tax-label">卖出</div>
-            <div class="tax-badge sell">4%</div>
+    <div class="info-card">
+      <!-- 代币基础面 -->
+      <div class="section-block">
+        <div class="block-title">
+          <span class="icon icon-blue">💰</span>
+          代币基础面
+        </div>
+        <div class="tokenomics-row">
+          <div class="token-card">
+            <div class="token-num">100万</div>
+            <div class="token-desc">发行总量</div>
           </div>
-          <div class="tax-item">
-            <div class="tax-dot dot-burn"></div>
-            永久销毁
-            <span>+1%</span>
-          </div>
-          <div class="tax-item">
-            <div class="tax-dot dot-market"></div>
-            营销红包
-            <span>+1%</span>
-          </div>
-          <div class="tax-item">
-            <div class="tax-dot dot-lp"></div>
-            LP 底池分红
-            <span>+2%</span>
+          <div class="token-card">
+            <div class="token-num orange">45万+</div>
+            <div class="token-desc">已销毁枚</div>
           </div>
         </div>
+        <div class="token-note">流通量持续减少 · 持币越多越稀缺</div>
       </div>
 
+      <!-- 交易税收 -->
+      <div class="section-block">
+        <div class="block-title">
+          <span class="icon icon-orange">📊</span>
+          交易税收
+        </div>
+        <div class="tax-grid" style="background:transparent;padding:0;border:none;">
+          <div class="tax-card" style="background:#eff6ff;border-color:#bfdbfe;">
+            <div class="tax-card-header">
+              <div class="tax-label">买入</div>
+              <div class="tax-badge buy">3%</div>
+            </div>
+            <div class="tax-item"><div class="tax-dot dot-burn"></div>永久销毁<span>+1%</span></div>
+            <div class="tax-item"><div class="tax-dot dot-market"></div>营销<span>+1%</span></div>
+            <div class="tax-item"><div class="tax-dot dot-lp"></div>LP分红<span>+1%</span></div>
+          </div>
+          <div class="tax-card" style="background:#fff5f5;border-color:#fecaca;">
+            <div class="tax-card-header">
+              <div class="tax-label">卖出</div>
+              <div class="tax-badge sell">4%</div>
+            </div>
+            <div class="tax-item"><div class="tax-dot dot-burn"></div>永久销毁<span>+1%</span></div>
+            <div class="tax-item"><div class="tax-dot dot-market"></div>营销<span>+1%</span></div>
+            <div class="tax-item"><div class="tax-dot dot-lp"></div>LP分红<span>+2%</span></div>
+          </div>
+        </div>
+        <div class="token-note" style="border-left-color:#9333ea;margin-top:12px;">全部链上自动执行，透明可查</div>
+      </div>
+
+      <!-- 安全机制 -->
+      <div class="section-block">
+        <div class="block-title">
+          <span class="icon icon-green">🛡️</span>
+          安全机制
+        </div>
+        <div class="sec-list">
+          <div class="sec-item"><span class="sec-icon">✓</span>合约开源，权限已丢弃</div>
+          <div class="sec-item"><span class="sec-icon">✓</span>团队无法增发代币</div>
+          <div class="sec-item"><span class="sec-icon">✓</span>团队无法修改税收</div>
+          <div class="sec-item"><span class="sec-icon">✓</span>LP底池锁仓5年，不存在跑路</div>
+          <div class="sec-item"><span class="sec-icon">✓</span>没有私募 / 预挖</div>
+          <div class="sec-item"><span class="sec-icon">✓</span>团队开盘前真金白银买入再加池</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 基金会 & 大户群 ========== -->
+    <div class="section-label">Community</div>
+    <div class="section-title">基金会 &amp; 大户群权益规则</div>
+
+    <div class="info-card">
+      <div class="section-block">
+        <div class="obligation-row">
+          <span class="obligation-tag">布道</span>
+          <span class="obligation-tag">参会</span>
+          <span class="obligation-tag">共识</span>
+          <span class="obligation-tag">优胜劣汰</span>
+        </div>
+
+        <div class="role-grid">
+          <!-- 基金会 -->
+          <div class="role-card">
+            <span class="role-badge fund">基金会</span>
+            <div class="role-name">加入基金会</div>
+            <div class="role-req">持有 1500 枚 CONS</div>
+            <div class="role-rule">
+              <strong>&gt;500枚</strong> 转入基金会钱包<br>
+              <strong>+1000枚</strong> 软锁仓
+            </div>
+          </div>
+          <!-- 大户群 -->
+          <div class="role-card">
+            <span class="role-badge whale">大户群</span>
+            <div class="role-name">持仓规则</div>
+            <div class="role-req">持有 500 枚以上</div>
+            <div class="role-rule">
+              <strong>&gt;100枚</strong> 转入大户群钱包<br>
+              <strong>+150枚</strong> 软锁仓
+            </div>
+          </div>
+        </div>
+
+        <!-- 分红规则 -->
+        <div class="dividend-box">
+          <div class="dividend-title">💎 每100枚 = 1份红利</div>
+          <div class="dividend-row"><span class="div-dot"></span>持有500枚：最多转入200枚 → 享受 <strong style="color:#1d4ed8">2份红利</strong></div>
+          <div class="dividend-row"><span class="div-dot"></span>持有1000枚：最多转入400枚 + 软锁仓600枚 → 享受 <strong style="color:#1d4ed8">4份红利</strong></div>
+        </div>
+
+        <!-- 优胜劣汰 -->
+        <div class="eliminate-note">
+          ⚠️ 基金会与大户群采用<strong>优胜劣汰机制</strong>，让更优秀的成员持续享受红利
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 交易规则与违规处理 ========== -->
+    <div class="section-label">Rules</div>
+    <div class="section-title">交易规则与违规处理公告</div>
+
+    <div class="info-card">
+      <div class="section-block">
+        <div class="block-title">
+          <span class="icon icon-purple">📋</span>
+          严格规范交易行为 · 维护盘面稳定
+        </div>
+
+        <!-- 涨跌线 -->
+        <div class="trade-grid">
+          <div class="trade-card red">
+            <div class="trade-label">🔴 下跌红线</div>
+            <div class="trade-content">
+              禁止任何卖单<br>
+              基金会/大户成员必须维稳盘面<br>
+              <strong style="color:#b91c1c">严禁出售</strong>
+            </div>
+          </div>
+          <div class="trade-card green">
+            <div class="trade-label">🟢 上涨绿线</div>
+            <div class="trade-content">
+              可按规则卖出<br>
+              每单不超过 <strong style="color:#15803d">50美金</strong><br>
+              两笔卖单间隔 <strong style="color:#15803d">≥30分钟</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 大户群违规 -->
+        <div class="penalty-section">
+          <div class="penalty-title purple">🚨 大户群成员违规处罚</div>
+          <div class="penalty-list">
+            <div class="penalty-item"><span class="penalty-icon purple">✕</span>踢出大户群</div>
+            <div class="penalty-item"><span class="penalty-icon purple">✕</span>取消大户群分红权益</div>
+            <div class="penalty-item"><span class="penalty-icon red">✕</span>锁仓代币打入黑洞</div>
+          </div>
+        </div>
+
+        <!-- 基金会违规 -->
+        <div class="penalty-section">
+          <div class="penalty-title blue">🚨 基金会成员违规处罚</div>
+          <div class="penalty-list">
+            <div class="penalty-item"><span class="penalty-icon blue">✕</span>开除基金会资格</div>
+            <div class="penalty-item"><span class="penalty-icon red">✕</span><strong style="color:#b91c1c">500枚</strong>罚没代币打入黑洞</div>
+          </div>
+        </div>
+
+        <!-- 推荐人连带责任 -->
+        <div class="referral-box">
+          <strong>推荐人连带责任：</strong><br>
+          若推荐用户连续 <strong>2次</strong> 违规卖单<br>
+          → 推荐人罚没 <strong>100枚</strong>「霸天虎」打入黑洞
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 合约信息 ========== -->
+    <div class="section-label">Contract</div>
+    <div class="section-title">合约地址</div>
+    <div class="info-card">
       <div class="contract-section">
         <div class="contract-row">
           <div class="contract-label">合约</div>
           <div style="flex:1;">
-            <div class="contract-key">合约地址</div>
+            <div class="contract-key">CONS 代币合约地址</div>
             <div class="addr-box">
               <div class="addr-text" id="consAddr">0x41bfb247acc8e600174c20b0ec9df148b9d967a8</div>
               <button class="btn-copy-addr" id="btnConsAddr" onclick="copyAddr()">复制</button>
@@ -465,7 +700,7 @@
       </div>
     </div>
 
-    <div class="footer">仅提供官方版本下载 · 建议从官网获取最新版</div>
+    <div class="footer">霸天虎CONS · BSC链 · 透明可查 · 社区自治</div>
   </div>
 
   <script>
