@@ -416,7 +416,106 @@
   .btn-copy-addr:hover { border-color: #3b82f6; background: #eff6ff; }
   .btn-copy-addr.copied { border-color: #16a34a; color: #16a34a; background: #f0fdf4; }
 
-  /* ========== Footer ========== */
+  /* ========== 持币地址排行榜 ========== */
+  .rank-section { margin-bottom: 40px; }
+  .rank-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .rank-table { width: 100%; border-collapse: collapse; }
+  .rank-table th {
+    background: #f8fafc;
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .rank-table th:last-child { text-align: right; }
+  .rank-table td {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #1e293b;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+  }
+  .rank-table tr:last-child td { border-bottom: none; }
+  .rank-table tr:hover { background: #f8fafc; }
+
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    margin-right: 12px;
+  }
+  .rank-1 { background: linear-gradient(135deg,#fbbf24,#f59e0b); color: #fff; }
+  .rank-2 { background: linear-gradient(135deg,#94a3b8,#64748b); color: #fff; }
+  .rank-3 { background: linear-gradient(135deg,#f59e0b,#b45309); color: #fff; }
+  .rank-4 { background: #dbeafe; color: #1d4ed8; }
+  .rank-5 { background: #fce7f3; color: #be185d; }
+  .rank-other { background: #f1f5f9; color: #64748b; }
+
+  .rank-name {
+    font-weight: 700;
+    color: #0f172a;
+  }
+  .rank-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-left: 8px;
+  }
+  .tag-burn { background: #fff7ed; color: #ea580c; }
+  .tag-club { background: #eff6ff; color: #2563eb; }
+  .tag-fund { background: #f3e8ff; color: #7c3aed; }
+  .tag-lp { background: #f0fdf4; color: #16a34a; }
+  .tag-lock { background: #fce7f3; color: #be185d; }
+  .tag-holder { background: #f1f5f9; color: #475569; }
+
+  .rank-addr {
+    font-size: 11px;
+    color: #94a3b8;
+    font-family: "SF Mono","Fira Code",monospace;
+    margin-top: 2px;
+    word-break: break-all;
+  }
+  .rank-amount {
+    font-weight: 800;
+    color: #0f172a;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .rank-amount span {
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+  .rank-pct {
+    font-size: 12px;
+    color: #64748b;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .rank-note {
+    font-size: 12px;
+    color: #64748b;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    line-height: 1.6;
+  }
+  .rank-note strong { color: #1e293b; }
   .footer {
     text-align: center;
     color: #c1c8d4;
@@ -573,9 +672,9 @@
       </div>
     </div>
 
-    <!-- ========== 基金会 & 俱乐部群 ========== -->
+    <!-- ========== 基金会 & 大户群 ========== -->
     <div class="section-label">Community</div>
-    <div class="section-title">基金会 &amp; 俱乐部权益规则</div>
+    <div class="section-title">基金会 &amp; 大户群权益规则</div>
 
     <div class="info-card">
       <div class="section-block">
@@ -597,13 +696,13 @@
               <strong>+1000枚</strong> 软锁仓
             </div>
           </div>
-          <!-- 俱乐部群 -->
+          <!-- 大户群 -->
           <div class="role-card">
-            <span class="role-badge whale">俱乐部群</span>
+            <span class="role-badge whale">大户群</span>
             <div class="role-name">持仓规则</div>
             <div class="role-req">持有 500 枚以上</div>
             <div class="role-rule">
-              <strong>&gt;100枚</strong> 转入俱乐部钱包<br>
+              <strong>&gt;100枚</strong> 转入大户群钱包<br>
               <strong>+150枚</strong> 软锁仓
             </div>
           </div>
@@ -618,7 +717,7 @@
 
         <!-- 优胜劣汰 -->
         <div class="eliminate-note">
-          ⚠️ 基金会与俱乐部群采用<strong>优胜劣汰机制</strong>，让更优秀的成员持续享受红利
+          ⚠️ 基金会与大户群采用<strong>优胜劣汰机制</strong>，让更优秀的成员持续享受红利
         </div>
       </div>
     </div>
@@ -648,18 +747,18 @@
             <div class="trade-label">🟢 上涨绿线</div>
             <div class="trade-content">
               可按规则卖出<br>
-              每单不超过 <strong style="color:#15803d">100美金</strong><br>
+              每单不超过 <strong style="color:#15803d">50美金</strong><br>
               两笔卖单间隔 <strong style="color:#15803d">≥30分钟</strong>
             </div>
           </div>
         </div>
 
-        <!-- 俱乐部群违规 -->
+        <!-- 大户群违规 -->
         <div class="penalty-section">
-          <div class="penalty-title purple">🚨 俱乐部群成员违规处罚</div>
+          <div class="penalty-title purple">🚨 大户群成员违规处罚</div>
           <div class="penalty-list">
-            <div class="penalty-item"><span class="penalty-icon purple">✕</span>移除俱乐部群</div>
-            <div class="penalty-item"><span class="penalty-icon purple">✕</span>取消俱乐部群分红权益</div>
+            <div class="penalty-item"><span class="penalty-icon purple">✕</span>踢出大户群</div>
+            <div class="penalty-item"><span class="penalty-icon purple">✕</span>取消大户群分红权益</div>
             <div class="penalty-item"><span class="penalty-icon red">✕</span>锁仓代币打入黑洞</div>
           </div>
         </div>
@@ -668,7 +767,7 @@
         <div class="penalty-section">
           <div class="penalty-title blue">🚨 基金会成员违规处罚</div>
           <div class="penalty-list">
-            <div class="penalty-item"><span class="penalty-icon blue">✕</span>开除基金会，取消分红资格</div>
+            <div class="penalty-item"><span class="penalty-icon blue">✕</span>开除基金会资格</div>
             <div class="penalty-item"><span class="penalty-icon red">✕</span><strong style="color:#b91c1c">500枚</strong>罚没代币打入黑洞</div>
           </div>
         </div>
@@ -679,6 +778,82 @@
           若推荐用户连续 <strong>2次</strong> 违规卖单<br>
           → 推荐人罚没 <strong>100枚</strong>「霸天虎」打入黑洞
         </div>
+      </div>
+    </div>
+
+    <!-- ========== 持币地址排行榜 ========== -->
+    <div class="section-label">Ranking</div>
+    <div class="section-title">持币地址排行榜</div>
+
+    <div class="rank-card">
+      <table class="rank-table">
+        <thead>
+          <tr>
+            <th>排名</th>
+            <th>地址 / 身份</th>
+            <th style="text-align:right;">持币数量</th>
+            <th style="text-align:right;">占比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank-badge rank-1">1</span></td>
+            <td>
+              <div class="rank-name">销毁地址（黑洞） <span class="rank-tag tag-burn">销毁</span></div>
+              <div class="rank-addr" id="addr1" onclick="copyRankAddr('addr1',this)" style="cursor:pointer;">0x000000000000000000000000000000000000dEaD</div>
+            </td>
+            <td class="rank-amount">480,000+ <span>CONS</span></td>
+            <td class="rank-pct">~48%</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge rank-2">2</span></td>
+            <td>
+              <div class="rank-name">俱乐部钱包 <span class="rank-tag tag-club">俱乐部</span></div>
+              <div class="rank-addr" id="addr2" onclick="copyRankAddr('addr2',this)" style="cursor:pointer;">0x119eaf794c30e031cb541807048f1f8aa9171ae3</div>
+            </td>
+            <td class="rank-amount">52,200 <span>CONS</span></td>
+            <td class="rank-pct">5.22%</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge rank-3">3</span></td>
+            <td>
+              <div class="rank-name">基金会钱包 <span class="rank-tag tag-fund">基金会</span></div>
+              <div class="rank-addr" id="addr3" onclick="copyRankAddr('addr3',this)" style="cursor:pointer;">0x63fd1fbc09b5dd2f093a69afb0d3dec81c636a7f</div>
+            </td>
+            <td class="rank-amount">20,500 <span>CONS</span></td>
+            <td class="rank-pct">2.05%</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge rank-4">4</span></td>
+            <td>
+              <div class="rank-name">LP 底池 <span class="rank-tag tag-lp">LP</span></div>
+              <div class="rank-addr" id="addr4" onclick="copyRankAddr('addr4',this)" style="cursor:pointer;">0xf04c6e7ac89b23ca72716efc170cf53310c320b3</div>
+            </td>
+            <td class="rank-amount">7,986 <span>CONS</span></td>
+            <td class="rank-pct">0.80%</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge rank-5">5</span></td>
+            <td>
+              <div class="rank-name">PinkLock 锁仓 <span class="rank-tag tag-lock">锁仓</span></div>
+              <div class="rank-addr" id="addr5" onclick="copyRankAddr('addr5',this)" style="cursor:pointer;">0x407993575c91ce7643a4d4ccacc9a98c36ee1bbe</div>
+            </td>
+            <td class="rank-amount">3,617 <span>CONS</span></td>
+            <td class="rank-pct">0.36%</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge rank-other">6-100</span></td>
+            <td>
+              <div class="rank-name">基金会 & 俱乐部成员地址</div>
+              <div class="rank-addr"><a href="https://bscscan.com/token/0x41bfb247acc8e600174c20b0ec9df148b9d967a8#balances" target="_blank" style="color:#2563eb;text-decoration:none;">🔗 查看完整持币分布 → BSCScan</a></div>
+            </td>
+            <td class="rank-amount">— <span>CONS</span></td>
+            <td class="rank-pct">—</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="rank-note">
+        💡 数据来源：BSC 链上 RPC 实时查询 · 总供应量 1,000,000 CONS · 点击地址可复制 · 榜6-100为基金会及俱乐部成员分散地址
       </div>
     </div>
 
@@ -732,6 +907,18 @@
         btn.classList.add("copied");
         showToast("合约地址已复制");
         setTimeout(() => { btn.textContent = "复制"; btn.classList.remove("copied"); }, 2000);
+      });
+    }
+
+    function copyRankAddr(id, btnEl) {
+      const el = document.getElementById(id);
+      if (!el || el.textContent === "待填写") return;
+      navigator.clipboard.writeText(el.textContent).then(() => {
+        if (btnEl) {
+          btnEl.textContent = "已复制";
+          setTimeout(() => { btnEl.textContent = "复制"; }, 1500);
+        }
+        showToast("地址已复制");
       });
     }
   </script>
