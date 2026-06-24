@@ -173,6 +173,7 @@
   .icon-orange { background: #ffedd5; }
   .icon-purple { background: #f3e8ff; }
   .icon-red { background: #fee2e2; }
+  .icon-gold { background: #fef3c7; }
 
   /* ========== Tokenomics ========== */
   .tokenomics-row {
@@ -245,6 +246,63 @@
     font-size: 13px; color: #94a3b8;
     margin-left: auto; font-weight: 600;
   }
+
+  /* ========== Profit tax ========== */
+  .profit-tax-box {
+    background: #fffbeb;
+    border-radius: 14px;
+    padding: 18px;
+    border: 1px solid #fde68a;
+    margin-bottom: 14px;
+  }
+  .profit-tax-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #92400e;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .profit-tax-sub {
+    font-size: 13px;
+    color: #92400e;
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: #fef3c7;
+    border-radius: 8px;
+    border-left: 3px solid #f59e0b;
+  }
+  .profit-tax-desc {
+    font-size: 14px;
+    color: #475569;
+    font-weight: 600;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .profit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .profit-table th,
+  .profit-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #fde68a;
+  }
+  .profit-table th {
+    font-weight: 800;
+    color: #78350f;
+    background: #fef3c7;
+  }
+  .profit-table td {
+    color: #475569;
+    font-weight: 600;
+  }
+  .profit-table tr:last-child td { border-bottom: none; }
+  .profit-table td:first-child { white-space: nowrap; }
 
   /* ========== Security ========== */
   .sec-list { display: flex; flex-direction: column; gap: 10px; }
@@ -416,106 +474,6 @@
   .btn-copy-addr:hover { border-color: #3b82f6; background: #eff6ff; }
   .btn-copy-addr.copied { border-color: #16a34a; color: #16a34a; background: #f0fdf4; }
 
-  /* ========== 持币地址排行榜 ========== */
-  .rank-section { margin-bottom: 40px; }
-  .rank-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-  }
-  .rank-table { width: 100%; border-collapse: collapse; }
-  .rank-table th {
-    background: #f8fafc;
-    font-size: 12px;
-    font-weight: 700;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 12px 16px;
-    text-align: left;
-    border-bottom: 1px solid #e2e8f0;
-  }
-  .rank-table th:last-child { text-align: right; }
-  .rank-table td {
-    padding: 14px 16px;
-    font-size: 14px;
-    color: #1e293b;
-    border-bottom: 1px solid #f1f5f9;
-    vertical-align: middle;
-  }
-  .rank-table tr:last-child td { border-bottom: none; }
-  .rank-table tr:hover { background: #f8fafc; }
-
-  .rank-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px; height: 28px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 800;
-    margin-right: 12px;
-  }
-  .rank-1 { background: linear-gradient(135deg,#fbbf24,#f59e0b); color: #fff; }
-  .rank-2 { background: linear-gradient(135deg,#94a3b8,#64748b); color: #fff; }
-  .rank-3 { background: linear-gradient(135deg,#f59e0b,#b45309); color: #fff; }
-  .rank-4 { background: #dbeafe; color: #1d4ed8; }
-  .rank-5 { background: #fce7f3; color: #be185d; }
-  .rank-other { background: #f1f5f9; color: #64748b; }
-
-  .rank-name {
-    font-weight: 700;
-    color: #0f172a;
-  }
-  .rank-tag {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 6px;
-    margin-left: 8px;
-  }
-  .tag-burn { background: #fff7ed; color: #ea580c; }
-  .tag-club { background: #eff6ff; color: #2563eb; }
-  .tag-fund { background: #f3e8ff; color: #7c3aed; }
-  .tag-lp { background: #f0fdf4; color: #16a34a; }
-  .tag-lock { background: #fce7f3; color: #be185d; }
-  .tag-holder { background: #f1f5f9; color: #475569; }
-
-  .rank-addr {
-    font-size: 11px;
-    color: #94a3b8;
-    font-family: "SF Mono","Fira Code",monospace;
-    margin-top: 2px;
-    word-break: break-all;
-  }
-  .rank-amount {
-    font-weight: 800;
-    color: #0f172a;
-    text-align: right;
-    white-space: nowrap;
-  }
-  .rank-amount span {
-    font-size: 12px;
-    color: #94a3b8;
-    font-weight: 600;
-  }
-  .rank-pct {
-    font-size: 12px;
-    color: #64748b;
-    text-align: right;
-    white-space: nowrap;
-  }
-  .rank-note {
-    font-size: 12px;
-    color: #64748b;
-    padding: 12px 16px;
-    background: #f8fafc;
-    border-top: 1px solid #e2e8f0;
-    line-height: 1.6;
-  }
-  .rank-note strong { color: #1e293b; }
   .footer {
     text-align: center;
     color: #c1c8d4;
@@ -561,7 +519,7 @@
     <div class="hero">
       <div class="hero-badge">BSC · 透明 · 通缩 · 自治</div>
       <h1>霸天虎 CONS</h1>
-      <p class="hero-sub">发行总量 <em>100万枚</em> · 已销毁 <em>48万+枚</em> · 流通量持续减少</p>
+      <p class="hero-sub">发行总量 <em>50万枚</em> · 已销毁 <em>25万+枚</em> · 流通量持续减少</p>
     </div>
 
     <!-- ========== 下载区 ========== -->
@@ -615,11 +573,11 @@
         </div>
         <div class="tokenomics-row">
           <div class="token-card">
-            <div class="token-num">100万</div>
+            <div class="token-num">50万</div>
             <div class="token-desc">发行总量</div>
           </div>
           <div class="token-card">
-            <div class="token-num orange">48万+</div>
+            <div class="token-num orange">25万+</div>
             <div class="token-desc">已销毁枚</div>
           </div>
         </div>
@@ -636,23 +594,59 @@
           <div class="tax-card" style="background:#eff6ff;border-color:#bfdbfe;">
             <div class="tax-card-header">
               <div class="tax-label">买入</div>
-              <div class="tax-badge buy">3%</div>
+              <div class="tax-badge buy">5%</div>
             </div>
             <div class="tax-item"><div class="tax-dot dot-burn"></div>永久销毁<span>+1%</span></div>
-            <div class="tax-item"><div class="tax-dot dot-market"></div>营销<span>+1%</span></div>
-            <div class="tax-item"><div class="tax-dot dot-lp"></div>LP分红<span>+1%</span></div>
+            <div class="tax-item"><div class="tax-dot dot-market"></div>营销钱包<span>+2%</span></div>
+            <div class="tax-item"><div class="tax-dot dot-lp"></div>LP分红<span>+2%</span></div>
           </div>
           <div class="tax-card" style="background:#fff5f5;border-color:#fecaca;">
             <div class="tax-card-header">
               <div class="tax-label">卖出</div>
-              <div class="tax-badge sell">4%</div>
+              <div class="tax-badge sell">5%</div>
             </div>
             <div class="tax-item"><div class="tax-dot dot-burn"></div>永久销毁<span>+1%</span></div>
-            <div class="tax-item"><div class="tax-dot dot-market"></div>营销<span>+1%</span></div>
+            <div class="tax-item"><div class="tax-dot dot-market"></div>营销钱包<span>+2%</span></div>
             <div class="tax-item"><div class="tax-dot dot-lp"></div>LP分红<span>+2%</span></div>
           </div>
         </div>
         <div class="token-note" style="border-left-color:#9333ea;margin-top:12px;">全部链上自动执行，透明可查</div>
+      </div>
+
+      <!-- 卖出盈利税 -->
+      <div class="section-block">
+        <div class="block-title">
+          <span class="icon icon-gold">🚀</span>
+          卖出盈利税
+        </div>
+        <div class="profit-tax-box">
+          <div class="profit-tax-title">🚀 卖出盈利税 10%</div>
+          <div class="profit-tax-sub">只扣盈利部分，本金不受影响！</div>
+          <div class="profit-tax-desc">
+            持币 ≥ 150 枚 可享 <strong>持币分红 + LP分红</strong>，双重收益，一鱼两吃！
+          </div>
+          <table class="profit-table">
+            <thead>
+              <tr>
+                <th>分配</th>
+                <th>比例</th>
+                <th>说明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🎁 持币分红</td>
+                <td>20%</td>
+                <td>分给持币 ≥ 150 枚的霸天虎持有者（以U结算）</td>
+              </tr>
+              <tr>
+                <td>🏆 俱乐部分红</td>
+                <td>80%</td>
+                <td>分给基金会及俱乐部核心成员</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- 安全机制 -->
@@ -665,7 +659,7 @@
           <div class="sec-item"><span class="sec-icon">✓</span>合约开源，权限已丢弃</div>
           <div class="sec-item"><span class="sec-icon">✓</span>团队无法增发代币</div>
           <div class="sec-item"><span class="sec-icon">✓</span>团队无法修改税收</div>
-          <div class="sec-item"><span class="sec-icon">✓</span>LP底池锁仓5年，不存在跑路</div>
+          <div class="sec-item"><span class="sec-icon">✓</span>LP底池打入黑洞</div>
           <div class="sec-item"><span class="sec-icon">✓</span>没有私募 / 预挖</div>
           <div class="sec-item"><span class="sec-icon">✓</span>团队开盘前真金白银买入再加池</div>
         </div>
@@ -690,29 +684,29 @@
           <div class="role-card">
             <span class="role-badge fund">基金会</span>
             <div class="role-name">加入基金会</div>
-            <div class="role-req">持有 1500 枚 CONS</div>
+            <div class="role-req">持有 750 枚 CONS</div>
             <div class="role-rule">
-              <strong>&gt;500枚</strong> 转入基金会钱包<br>
-              <strong>+1000枚</strong> 软锁仓
+              <strong>&gt;250枚</strong> 转入基金会钱包<br>
+              <strong>+500枚</strong> 软锁仓
             </div>
           </div>
           <!-- 俱乐部群 -->
           <div class="role-card">
             <span class="role-badge whale">俱乐部群</span>
             <div class="role-name">持仓规则</div>
-            <div class="role-req">持有 500 枚以上</div>
+            <div class="role-req">持有 250 枚以上</div>
             <div class="role-rule">
-              <strong>&gt;100枚</strong> 转入俱乐部群钱包<br>
-              <strong>+150枚</strong> 软锁仓
+              <strong>&gt;50枚</strong> 转入俱乐部群钱包<br>
+              <strong>+75枚</strong> 软锁仓
             </div>
           </div>
         </div>
 
         <!-- 分红规则 -->
         <div class="dividend-box">
-          <div class="dividend-title">💎 每100枚 = 1份红利</div>
-          <div class="dividend-row"><span class="div-dot"></span>持有500枚：最多转入200枚 → 享受 <strong style="color:#1d4ed8">2份红利</strong></div>
-          <div class="dividend-row"><span class="div-dot"></span>持有1000枚：最多转入400枚 + 软锁仓600枚 → 享受 <strong style="color:#1d4ed8">4份红利</strong></div>
+          <div class="dividend-title">💎 每50枚 = 1份红利</div>
+          <div class="dividend-row"><span class="div-dot"></span>持有250枚：最多转入100枚 → 享受 <strong style="color:#1d4ed8">1份红利</strong></div>
+          <div class="dividend-row"><span class="div-dot"></span>持有500枚：最多转入200枚 + 软锁仓300枚 → 享受 <strong style="color:#1d4ed8">2份红利</strong></div>
         </div>
 
         <!-- 优胜劣汰 -->
@@ -747,8 +741,8 @@
             <div class="trade-label">🟢 上涨绿线</div>
             <div class="trade-content">
               可按规则卖出<br>
-              每单不超过 <strong style="color:#15803d">100美金</strong><br>
-              两笔卖单间隔 <strong style="color:#15803d">≥30分钟</strong>
+              每单不超过 <strong style="color:#15803d">200美金</strong><br>
+              两笔卖单间隔 <strong style="color:#15803d">≥60分钟</strong>
             </div>
           </div>
         </div>
@@ -768,7 +762,7 @@
           <div class="penalty-title blue">🚨 基金会成员违规处罚</div>
           <div class="penalty-list">
             <div class="penalty-item"><span class="penalty-icon blue">✕</span>开除基金会资格</div>
-            <div class="penalty-item"><span class="penalty-icon red">✕</span><strong style="color:#b91c1c">500枚</strong>罚没代币打入黑洞</div>
+            <div class="penalty-item"><span class="penalty-icon red">✕</span><strong style="color:#b91c1c">250枚</strong>罚没代币打入黑洞</div>
           </div>
         </div>
 
@@ -776,89 +770,13 @@
         <div class="referral-box">
           <strong>推荐人连带责任：</strong><br>
           若推荐用户连续 <strong>2次</strong> 违规卖单<br>
-          → 推荐人罚没 <strong>100枚</strong>「霸天虎」打入黑洞
+          → 推荐人罚没 <strong>50枚</strong>「霸天虎」打入黑洞
         </div>
       </div>
     </div>
 
-    <!-- ========== 持币地址排行榜 ========== -->
-    <div class="section-label">Ranking</div>
-    <div class="section-title">持币地址排行榜</div>
-
-    <div class="rank-card">
-      <table class="rank-table">
-        <thead>
-          <tr>
-            <th>排名</th>
-            <th>地址 / 身份</th>
-            <th style="text-align:right;">持币数量</th>
-            <th style="text-align:right;">占比</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="rank-badge rank-1">1</span></td>
-            <td>
-              <div class="rank-name">销毁地址（黑洞） <span class="rank-tag tag-burn">销毁</span></div>
-              <div class="rank-addr" id="addr1" onclick="copyRankAddr('addr1',this)" style="cursor:pointer;">0x000000000000000000000000000000000000dEaD</div>
-            </td>
-            <td class="rank-amount">480,000+ <span>CONS</span></td>
-            <td class="rank-pct">~48%</td>
-          </tr>
-          <tr>
-            <td><span class="rank-badge rank-2">2</span></td>
-            <td>
-              <div class="rank-name">俱乐部钱包 <span class="rank-tag tag-club">俱乐部</span></div>
-              <div class="rank-addr" id="addr2" onclick="copyRankAddr('addr2',this)" style="cursor:pointer;">0x119eaf794c30e031cb541807048f1f8aa9171ae3</div>
-            </td>
-            <td class="rank-amount">52,200 <span>CONS</span></td>
-            <td class="rank-pct">5.22%</td>
-          </tr>
-          <tr>
-            <td><span class="rank-badge rank-3">3</span></td>
-            <td>
-              <div class="rank-name">基金会钱包 <span class="rank-tag tag-fund">基金会</span></div>
-              <div class="rank-addr" id="addr3" onclick="copyRankAddr('addr3',this)" style="cursor:pointer;">0x63fd1fbc09b5dd2f093a69afb0d3dec81c636a7f</div>
-            </td>
-            <td class="rank-amount">20,500 <span>CONS</span></td>
-            <td class="rank-pct">2.05%</td>
-          </tr>
-          <tr>
-            <td><span class="rank-badge rank-4">4</span></td>
-            <td>
-              <div class="rank-name">LP 底池 <span class="rank-tag tag-lp">LP</span></div>
-              <div class="rank-addr" id="addr4" onclick="copyRankAddr('addr4',this)" style="cursor:pointer;">0xf04c6e7ac89b23ca72716efc170cf53310c320b3</div>
-            </td>
-            <td class="rank-amount">7,986 <span>CONS</span></td>
-            <td class="rank-pct">0.80%</td>
-          </tr>
-          <tr>
-            <td><span class="rank-badge rank-5">5</span></td>
-            <td>
-              <div class="rank-name">PinkLock 锁仓 <span class="rank-tag tag-lock">锁仓</span></div>
-              <div class="rank-addr" id="addr5" onclick="copyRankAddr('addr5',this)" style="cursor:pointer;">0x407993575c91ce7643a4d4ccacc9a98c36ee1bbe</div>
-            </td>
-            <td class="rank-amount">3,617 <span>CONS</span></td>
-            <td class="rank-pct">0.36%</td>
-          </tr>
-          <tr>
-            <td><span class="rank-badge rank-other">6-100</span></td>
-            <td>
-              <div class="rank-name">基金会 & 俱乐部成员地址</div>
-              <div class="rank-addr"><a href="https://bscscan.com/token/0x41bfb247acc8e600174c20b0ec9df148b9d967a8#balances" target="_blank" style="color:#2563eb;text-decoration:none;">🔗 查看完整持币分布 → BSCScan</a></div>
-            </td>
-            <td class="rank-amount">— <span>CONS</span></td>
-            <td class="rank-pct">—</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="rank-note">
-        💡 数据来源：BSC 链上 RPC 实时查询 · 总供应量 1,000,000 CONS · 点击地址可复制 · 榜6-100为基金会及俱乐部成员分散地址
-      </div>
-    </div>
-
     <!-- ========== 合约信息 ========== -->
-    <div class="section-label">Contract</div>
+<div class="section-label">Contract</div>
     <div class="section-title">合约地址</div>
     <div class="info-card">
       <div class="contract-section">
@@ -867,7 +785,7 @@
           <div style="flex:1;">
             <div class="contract-key">CONS 代币合约地址</div>
             <div class="addr-box">
-              <div class="addr-text" id="consAddr">0x41bfb247acc8e600174c20b0ec9df148b9d967a8</div>
+              <div class="addr-text" id="consAddr">0x4cb0f56cc6d56d8b06059ee3b59a54a6910ed336</div>
               <button class="btn-copy-addr" id="btnConsAddr" onclick="copyAddr()">复制</button>
             </div>
           </div>
@@ -888,7 +806,7 @@
 
     function copyLink(type) {
       const urls = {
-        musk: "https://muskswap.club/?utm_source=tokenpocket&inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0x41BFb247acc8E600174C20b0eC9Df148B9d967A8"
+        musk: "https://muskswap.club/?utm_source=tokenpocket&inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0x4Cb0F56Cc6d56d8B06059eE3b59a54a6910ED336"
       };
       const btn = document.getElementById("btnMusk");
       navigator.clipboard.writeText(urls[type]).then(() => {
@@ -900,7 +818,7 @@
     }
 
     function copyAddr() {
-      const addr = "0x41bfb247acc8e600174c20b0ec9df148b9d967a8";
+      const addr = "0x4cb0f56cc6d56d8b06059ee3b59a54a6910ed336";
       const btn = document.getElementById("btnConsAddr");
       navigator.clipboard.writeText(addr).then(() => {
         btn.textContent = "已复制";
@@ -908,15 +826,7 @@
         showToast("合约地址已复制");
         setTimeout(() => { btn.textContent = "复制"; btn.classList.remove("copied"); }, 2000);
       });
-    }
-
-    function copyRankAddr(id, btnEl) {
-      const el = document.getElementById(id);
-      if (!el || el.textContent === "待填写") return;
-      navigator.clipboard.writeText(el.textContent).then(() => {
-        if (btnEl) {
-          btnEl.textContent = "已复制";
-          setTimeout(() => { btnEl.textContent = "复制"; }, 1500);
+    }, 1500);
         }
         showToast("地址已复制");
       });
