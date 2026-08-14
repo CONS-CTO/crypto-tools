@@ -804,32 +804,44 @@
       setTimeout(() => toast.classList.remove("show"), 2000);
     }
 
+    function copyText(text, btn, successText, resetText, toastMsg) {
+      function ok() {
+        btn.textContent = successText;
+        btn.classList.add("copied");
+        showToast(toastMsg);
+        setTimeout(() => { btn.textContent = resetText; btn.classList.remove("copied"); }, 2000);
+      }
+      function fallback() {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        ta.setSelectionRange(0, ta.value.length);
+        let ok2 = false;
+        try { ok2 = document.execCommand("copy"); } catch (e) { ok2 = false; }
+        document.body.removeChild(ta);
+        if (ok2) { ok(); } else { showToast("复制失败，请长按文本手动复制"); }
+      }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(ok).catch(fallback);
+      } else {
+        fallback();
+      }
+    }
+
     function copyLink(type) {
       const urls = {
         musk: "https://muskswap.club/?utm_source=tokenpocket&inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0x4Cb0F56Cc6d56d8B06059eE3b59a54a6910ED336"
       };
-      const btn = document.getElementById("btnMusk");
-      navigator.clipboard.writeText(urls[type]).then(() => {
-        btn.textContent = "已复制";
-        btn.classList.add("copied");
-        showToast("链接已复制");
-        setTimeout(() => { btn.textContent = "复制链接"; btn.classList.remove("copied"); }, 2000);
-      });
+      copyText(urls[type], document.getElementById("btnMusk"), "已复制", "复制链接", "链接已复制");
     }
 
     function copyAddr() {
-      const addr = "0x4cb0f56cc6d56d8b06059ee3b59a54a6910ed336";
-      const btn = document.getElementById("btnConsAddr");
-      navigator.clipboard.writeText(addr).then(() => {
-        btn.textContent = "已复制";
-        btn.classList.add("copied");
-        showToast("合约地址已复制");
-        setTimeout(() => { btn.textContent = "复制"; btn.classList.remove("copied"); }, 2000);
-      });
-    }, 1500);
-        }
-        showToast("地址已复制");
-      });
+      const addr = document.getElementById("consAddr").textContent.trim();
+      copyText(addr, document.getElementById("btnConsAddr"), "已复制", "复制", "合约地址已复制");
     }
   </script>
 </body>
