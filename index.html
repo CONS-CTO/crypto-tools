@@ -114,7 +114,9 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 26px;
     flex-shrink: 0;
+    overflow: hidden;
   }
+  .card-icon img { width: 40px; height: 40px; border-radius: 11px; object-fit: cover; display: block; }
   .card-tp .card-icon { background: #ecfdf5; }
   .card-ave .card-icon { background: #fffbeb; }
   .card-musk .card-icon { background: #faf5ff; }
@@ -538,7 +540,7 @@
     <!-- ========== 下载区 ========== -->
     <div class="section-label">Download</div>
     <div class="section-title">官方工具下载</div>
-    <p class="dl-note">国内直链由项目服务器（阿里云）托管<b>官方原包</b>，国内稳定可达；安装前请以官网公布的安全哈希校验真伪。</p>
+    <p class="dl-note">国内直链由项目服务器（阿里云·HTTPS）托管<b>官方原包</b>，国内稳定可达；安装前请以官网公布的安全哈希校验真伪。</p>
     <div class="cards">
       <div class="card card-musk" onclick="copyLink('musk')">
         <div class="card-icon">🟣</div>
@@ -552,25 +554,25 @@
       </div>
 
       <div class="card card-tp">
-        <div class="card-icon">💳</div>
+        <div class="card-icon"><img src="https://wuxingjiaohui.icu/apks/tp.ico" alt="TokenPocket"></div>
         <div class="card-body">
           <div class="card-title">TP 钱包</div>
           <div class="card-sub">TokenPocket Pro v2.25.0 · 122.9 MB</div>
           <div class="card-links">
             <a class="dl-link" href="https://github.com/CONS-CTO/crypto-tools/releases/download/v1.0.0/TP.apk" target="_blank">海外下载 ↗</a>
-            <a class="dl-link official" href="http://43.108.21.12/TP.apk" target="_blank">国内下载·官方原包 ↗</a>
+            <a class="dl-link official" href="https://wuxingjiaohui.icu/apks/TP.apk">国内下载·官方原包 ↗</a>
           </div>
         </div>
       </div>
 
       <div class="card card-ave">
-        <div class="card-icon">🪙</div>
+        <div class="card-icon"><img src="https://wuxingjiaohui.icu/apks/ave.ico" alt="AVE"></div>
         <div class="card-body">
           <div class="card-title">AVE</div>
           <div class="card-sub">AVE v2.3.38 · 160.4 MB</div>
           <div class="card-links">
             <a class="dl-link" href="https://github.com/CONS-CTO/crypto-tools/releases/download/v1.0.0/ave.apk" target="_blank">海外下载 ↗</a>
-            <a class="dl-link official" href="http://43.108.21.12/ave.apk" target="_blank">国内下载·官方原包 ↗</a>
+            <a class="dl-link official" href="https://wuxingjiaohui.icu/apks/ave.apk">国内下载·官方原包 ↗</a>
           </div>
         </div>
       </div>
