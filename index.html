@@ -567,9 +567,17 @@
     position: relative; overflow: hidden;
   }
   .g-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .g-slide-video { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #06b6d4 100%); }
-  .g-video-poster { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-  .g-play span {
+  /* 视频卡片：真实 <video> 首帧预览，不再用蓝背景占位 */
+  .g-video-el {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    background: #0f172a;
+  }
+  .g-play-overlay {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(30,58,138,0.28) 0%, rgba(37,99,235,0.22) 55%, rgba(6,182,212,0.28) 100%);
+  }
+  .g-play-btn {
     width: 52px; height: 52px; border-radius: 50%;
     background: rgba(255,255,255,0.92); color: #1d4ed8;
     display: flex; align-items: center; justify-content: center;
@@ -682,9 +690,10 @@
     <div class="city-tabs" id="cityTabs"><div class="city-tab active" data-province="all">全部</div><div class="city-tab" data-province="浙江">浙江 <span class="tab-n">6</span></div><div class="city-tab" data-province="山东">山东 <span class="tab-n">4</span></div><div class="city-tab" data-province="广东">广东 <span class="tab-n">3</span></div><div class="city-tab" data-province="四川">四川 <span class="tab-n">2</span></div><div class="city-tab" data-province="河北">河北 <span class="tab-n">2</span></div><div class="city-tab" data-province="湖北">湖北 <span class="tab-n">2</span></div><div class="city-tab" data-province="上海">上海 <span class="tab-n">1</span></div><div class="city-tab" data-province="云南">云南 <span class="tab-n">1</span></div><div class="city-tab" data-province="江苏">江苏 <span class="tab-n">1</span></div><div class="city-tab" data-province="湖南">湖南 <span class="tab-n">1</span></div><div class="city-tab" data-province="福建">福建 <span class="tab-n">1</span></div></div>
     <div class="gallery" id="gallery">      <div class="g-item g-citycard" data-province="上海" data-city="上海">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E4%B8%8A%E6%B5%B7/c3b295fdfeea557e73b3e88bd9477f4f.mp4" data-city="上海">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E4%B8%8A%E6%B5%B7/c3b295fdfeea557e73b3e88bd9477f4f.mp4?v=2" data-city="上海">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E4%B8%8A%E6%B5%B7/c3b295fdfeea557e73b3e88bd9477f4f.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <span class="g-city">上海</span>
@@ -696,17 +705,20 @@
         <span class="g-city">河北唐山</span>
       </div>      <div class="g-item g-citycard" data-province="浙江" data-city="浙江嘉兴">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/001cb5815ff9df7024088c84c2c70f25.mp4" data-city="浙江嘉兴">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/001cb5815ff9df7024088c84c2c70f25.mp4?v=2" data-city="浙江嘉兴">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/001cb5815ff9df7024088c84c2c70f25.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/2790c68879c71616da203cbdb2d638d8.mp4" data-city="浙江嘉兴">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/2790c68879c71616da203cbdb2d638d8.mp4?v=2" data-city="浙江嘉兴">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/2790c68879c71616da203cbdb2d638d8.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/ce5a06e3b0ea8a70fdb8ae7098ae1736.mp4" data-city="浙江嘉兴">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/ce5a06e3b0ea8a70fdb8ae7098ae1736.mp4?v=2" data-city="浙江嘉兴">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/ce5a06e3b0ea8a70fdb8ae7098ae1736.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <button class="g-nav g-prev" aria-label="上一项">&#8249;</button>
@@ -727,37 +739,42 @@
         <span class="g-city">四川宜宾</span>
       </div>      <div class="g-item g-citycard" data-province="山东" data-city="山东威海">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%B1%B1%E4%B8%9C%E5%A8%81%E6%B5%B7/8a17a1e83aa2dc5e67386de67b84161f.mp4" data-city="山东威海">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%B1%B1%E4%B8%9C%E5%A8%81%E6%B5%B7/8a17a1e83aa2dc5e67386de67b84161f.mp4?v=2" data-city="山东威海">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E5%B1%B1%E4%B8%9C%E5%A8%81%E6%B5%B7/8a17a1e83aa2dc5e67386de67b84161f.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <span class="g-city">山东威海</span>
       </div>      <div class="g-item g-citycard" data-province="广东" data-city="广东东莞">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%B9%BF%E4%B8%9C%E4%B8%9C%E8%8E%9E/97621cf866d1389f6432d432f83323d0.mp4" data-city="广东东莞">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%B9%BF%E4%B8%9C%E4%B8%9C%E8%8E%9E/97621cf866d1389f6432d432f83323d0.mp4?v=2" data-city="广东东莞">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E5%B9%BF%E4%B8%9C%E4%B8%9C%E8%8E%9E/97621cf866d1389f6432d432f83323d0.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <span class="g-city">广东东莞</span>
       </div>      <div class="g-item g-citycard" data-province="广东" data-city="广东惠州">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%B9%BF%E4%B8%9C%E6%83%A0%E5%B7%9E/88125eee10beb6817b7f950bd9feffe8.mp4" data-city="广东惠州">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%B9%BF%E4%B8%9C%E6%83%A0%E5%B7%9E/88125eee10beb6817b7f950bd9feffe8.mp4?v=2" data-city="广东惠州">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E5%B9%BF%E4%B8%9C%E6%83%A0%E5%B7%9E/88125eee10beb6817b7f950bd9feffe8.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <span class="g-city">广东惠州</span>
       </div>      <div class="g-item g-citycard" data-province="山东" data-city="山东文登">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%96%87%E7%99%BB/cf9ccef93e5f4524f6e881ba2f268563.mp4" data-city="山东文登">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%96%87%E7%99%BB/cf9ccef93e5f4524f6e881ba2f268563.mp4?v=2" data-city="山东文登">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E6%96%87%E7%99%BB/cf9ccef93e5f4524f6e881ba2f268563.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%96%87%E7%99%BB/ec90bf70b7d79bb8f4bb4bb95dc76df6.mp4" data-city="山东文登">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%96%87%E7%99%BB/ec90bf70b7d79bb8f4bb4bb95dc76df6.mp4?v=2" data-city="山东文登">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E6%96%87%E7%99%BB/ec90bf70b7d79bb8f4bb4bb95dc76df6.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <button class="g-nav g-prev" aria-label="上一项">&#8249;</button>
@@ -772,13 +789,15 @@
         <span class="g-city">云南昆明</span>
       </div>      <div class="g-item g-citycard" data-province="浙江" data-city="浙江杭州">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%9D%AD%E5%B7%9E/84fa13d9a2d7e9f28f5f943fe41fb613.mp4" data-city="浙江杭州">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%9D%AD%E5%B7%9E/84fa13d9a2d7e9f28f5f943fe41fb613.mp4?v=2" data-city="浙江杭州">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E6%9D%AD%E5%B7%9E/84fa13d9a2d7e9f28f5f943fe41fb613.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%9D%AD%E5%B7%9E/c9515c8e8e56afa10effd3eefe5fb9c8.mp4" data-city="浙江杭州">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%9D%AD%E5%B7%9E/c9515c8e8e56afa10effd3eefe5fb9c8.mp4?v=2" data-city="浙江杭州">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E6%9D%AD%E5%B7%9E/c9515c8e8e56afa10effd3eefe5fb9c8.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <button class="g-nav g-prev" aria-label="上一项">&#8249;</button>
@@ -793,33 +812,39 @@
         <span class="g-city">湖北武汉</span>
       </div>      <div class="g-item g-citycard" data-province="浙江" data-city="浙江浦江">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B5%A6%E6%B1%9F/2135daba3c228e76c3f2e7a237ae6a11.mp4" data-city="浙江浦江">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B5%A6%E6%B1%9F/eb983eb5665e013395a5dd75aa0ab6f5.mp4?v=2" data-city="浙江浦江">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E6%B5%A6%E6%B1%9F/eb983eb5665e013395a5dd75aa0ab6f5.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <span class="g-city">浙江浦江</span>
       </div>      <div class="g-item g-citycard" data-province="山东" data-city="山东淄博">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/315ce667a4e13eadb478bbcffce81c67.mp4" data-city="山东淄博">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/315ce667a4e13eadb478bbcffce81c67.mp4?v=2" data-city="山东淄博">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/315ce667a4e13eadb478bbcffce81c67.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/7608ffe21e413462eff486edd3be0939.mp4" data-city="山东淄博">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/7608ffe21e413462eff486edd3be0939.mp4?v=2" data-city="山东淄博">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/7608ffe21e413462eff486edd3be0939.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/7908ff7503d2e1237b6b03cbf4d16342.mp4" data-city="山东淄博">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/7908ff7503d2e1237b6b03cbf4d16342.mp4?v=2" data-city="山东淄博">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/7908ff7503d2e1237b6b03cbf4d16342.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/91e8f145c90738ac809a708f0db6b798.mp4" data-city="山东淄博">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/91e8f145c90738ac809a708f0db6b798.mp4?v=2" data-city="山东淄博">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/91e8f145c90738ac809a708f0db6b798.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/bf739a7a4045602af5638165b3d73471.mp4" data-city="山东淄博">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/bf739a7a4045602af5638165b3d73471.mp4?v=2" data-city="山东淄博">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/bf739a7a4045602af5638165b3d73471.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <button class="g-nav g-prev" aria-label="上一项">&#8249;</button>
@@ -828,9 +853,10 @@
         <span class="g-city">山东淄博</span>
       </div>      <div class="g-item g-citycard" data-province="广东" data-city="广东深圳">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%B1%E5%9C%B3/bbdd68a0fb8cd9d23ff472fd6379e99f.mp4" data-city="广东深圳">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%B1%E5%9C%B3/bbdd68a0fb8cd9d23ff472fd6379e99f.mp4?v=2" data-city="广东深圳">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E6%B7%B1%E5%9C%B3/bbdd68a0fb8cd9d23ff472fd6379e99f.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <span class="g-city">广东深圳</span>
@@ -839,21 +865,25 @@
           <div class="g-slide" data-type="image" data-src="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/9ce0ae600ffeaa202d437c8ebb86644a.jpg" data-city="山东石岛">
             <img src="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/9ce0ae600ffeaa202d437c8ebb86644a.jpg" alt="山东石岛" loading="lazy">
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/389f0d7b15e226a2fb99022c7113bc34.mp4" data-city="山东石岛">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/389f0d7b15e226a2fb99022c7113bc34.mp4?v=2" data-city="山东石岛">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/389f0d7b15e226a2fb99022c7113bc34.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/41dfe69f8b269f25d369669ad2769266.mp4" data-city="山东石岛">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/41dfe69f8b269f25d369669ad2769266.mp4?v=2" data-city="山东石岛">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/41dfe69f8b269f25d369669ad2769266.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/4ae0a0081479005347ee19703be3579d.mp4" data-city="山东石岛">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/4ae0a0081479005347ee19703be3579d.mp4?v=2" data-city="山东石岛">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/4ae0a0081479005347ee19703be3579d.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/6f971cc0b0c53a7b8b9fd63045bc2ffb.mp4" data-city="山东石岛">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/6f971cc0b0c53a7b8b9fd63045bc2ffb.mp4?v=2" data-city="山东石岛">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/6f971cc0b0c53a7b8b9fd63045bc2ffb.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <button class="g-nav g-prev" aria-label="上一项">&#8249;</button>
@@ -881,29 +911,33 @@
         <span class="g-city">四川简阳</span>
       </div>      <div class="g-item g-citycard" data-province="浙江" data-city="浙江舟山">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%88%9F%E5%B1%B1/60f2c449f6ba569772052f0198689667.mp4" data-city="浙江舟山">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%88%9F%E5%B1%B1/60f2c449f6ba569772052f0198689667.mp4?v=2" data-city="浙江舟山">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E8%88%9F%E5%B1%B1/60f2c449f6ba569772052f0198689667.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <span class="g-city">浙江舟山</span>
       </div>      <div class="g-item g-citycard" data-province="江苏" data-city="江苏苏州">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%8B%8F%E5%B7%9E/919d10eb4ee78b6b266c208a5276a1a1.mp4" data-city="江苏苏州">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%8B%8F%E5%B7%9E/919d10eb4ee78b6b266c208a5276a1a1.mp4?v=2" data-city="江苏苏州">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E8%8B%8F%E5%B7%9E/919d10eb4ee78b6b266c208a5276a1a1.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <span class="g-city">江苏苏州</span>
       </div>      <div class="g-item g-citycard" data-province="浙江" data-city="浙江象山">
         <div class="g-track">
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%B1%A1%E5%B1%B1/dc58329ea4327384855aa52790f58b48.mp4" data-city="浙江象山">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%B1%A1%E5%B1%B1/2135daba3c228e76c3f2e7a237ae6a11.mp4?v=2" data-city="浙江象山">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E8%B1%A1%E5%B1%B1/2135daba3c228e76c3f2e7a237ae6a11.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
-          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%B1%A1%E5%B1%B1/eb983eb5665e013395a5dd75aa0ab6f5.mp4" data-city="浙江象山">
-            <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+          <div class="g-slide g-slide-video" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%B1%A1%E5%B1%B1/dc58329ea4327384855aa52790f58b48.mp4?v=2" data-city="浙江象山">
+            <video class="g-video-el" src="https://wuxingjiaohui.icu/media/%E8%B1%A1%E5%B1%B1/dc58329ea4327384855aa52790f58b48.mp4?v=2" muted playsinline preload="metadata"></video>
             <span class="g-video-tag">视频</span>
+            <span class="g-play-overlay"><span class="g-play-btn">&#9654;</span></span>
           </div>
         </div>
         <button class="g-nav g-prev" aria-label="上一项">&#8249;</button>
@@ -1243,7 +1277,8 @@
       const count = card.querySelector(".g-count");
       let idx = 0;
       const update = () => {
-        track.scrollTo({ left: track.clientWidth * idx, behavior: "smooth" });
+        // 用 scrollLeft 直接设置，兼容性优于 scrollTo({behavior:smooth})
+        track.scrollLeft = track.clientWidth * idx;
         if (count) count.textContent = (idx + 1) + "/" + total;
       };
       if (prev) prev.addEventListener("click", (e) => {
@@ -1254,6 +1289,24 @@
         e.stopPropagation();
         idx = (idx + 1) % total; update();
       });
+      // 用户手动滑动时也同步计数
+      track.addEventListener("scroll", () => {
+        const i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+        if (i !== idx) { idx = i; if (count) count.textContent = (idx + 1) + "/" + total; }
+      }, { passive: true });
+    });
+
+    // 视频卡片：加载后渲染首帧（preload=metadata 在部分浏览器不自动出画）
+    document.querySelectorAll(".g-video-el").forEach(v => {
+      const showFrame = () => { try { v.currentTime = 0.1; } catch (e) {} };
+      if (v.readyState >= 1) showFrame();
+      else v.addEventListener("loadedmetadata", showFrame, { once: true });
+      v.addEventListener("error", () => {
+        // 首帧渲染失败则退回蓝渐变占位，避免纯黑
+        v.style.display = "none";
+        const ov = v.parentElement.querySelector(".g-play-overlay");
+        if (ov) ov.style.background = "linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #06b6d4 100%)";
+      }, { once: true });
     });
 
     // 灯箱
