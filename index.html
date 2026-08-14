@@ -518,6 +518,65 @@
     .btn-copy-addr { width: 100%; text-align: center; }
     .card { padding: 18px; }
   }
+      /* ========== City showcase / 地推风采 ========== */
+  .showcase-intro { font-size: 14px; color: #64748b; font-weight: 500; margin-bottom: 16px; line-height: 1.6; }
+  .showcase-intro b { color: #1d4ed8; }
+  .city-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 18px; -webkit-overflow-scrolling: touch; }
+  .city-tab {
+    flex-shrink: 0; padding: 7px 16px; border-radius: 20px;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    background: #ffffff; border: 1px solid #e2e8f0; color: #475569;
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .city-tab.active { background: #1d4ed8; border-color: #1d4ed8; color: #ffffff; }
+  .city-tab:hover { border-color: #3b82f6; }
+  .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 40px; }
+  @media (max-width: 480px) { .gallery { grid-template-columns: 1fr; } }
+  .g-item {
+    position: relative; border-radius: 14px; overflow: hidden;
+    background: #e2e8f0; cursor: pointer; aspect-ratio: 4 / 3;
+    border: 1px solid #e2e8f0;
+  }
+  .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+  .g-item:hover img { transform: scale(1.05); }
+  .g-city {
+    position: absolute; left: 10px; bottom: 10px;
+    background: rgba(15,23,42,0.72); color: #fff;
+    font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 8px;
+    backdrop-filter: blur(4px);
+  }
+  .g-badge {
+    position: absolute; top: 10px; left: 10px;
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 6px;
+    background: rgba(234,88,12,0.92); color: #fff;
+  }
+  .g-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .g-play span {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(255,255,255,0.92); color: #1d4ed8;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; padding-left: 4px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+  .g-video-tag {
+    position: absolute; top: 10px; right: 10px;
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 6px;
+    background: rgba(37,99,235,0.92); color: #fff;
+  }
+
+  /* ========== Lightbox ========== */
+  .lb {
+    position: fixed; inset: 0; background: rgba(15,23,42,0.92);
+    display: none; align-items: center; justify-content: center;
+    z-index: 1000; padding: 20px; flex-direction: column;
+  }
+  .lb.show { display: flex; }
+  .lb-inner img, .lb-inner video { max-width: 100%; max-height: 80vh; display: block; border-radius: 12px; }
+  .lb-cap { color: #fff; margin-top: 14px; font-size: 14px; font-weight: 600; text-align: center; }
+  .lb-close {
+    position: absolute; top: 18px; right: 22px; color: #fff;
+    font-size: 30px; cursor: pointer; line-height: 1; font-weight: 300;
+  }
 </style>
 </head>
 <body>
@@ -574,6 +633,178 @@
         </div>
       </div>
     </div>
+
+    <!--SHOWCASE_START-->
+    <div class="section-label">Showcase</div>
+    <div class="section-title">地推风采 · 全国城市实拍</div>
+    <p class="showcase-intro">工作室一线实地拍摄，覆盖全国 <b>24 座城市</b> 并持续更新，敬请期待更多城市上线。</p>
+    <div class="city-tabs" id="cityTabs"><div class="city-tab active" data-city="all">全部</div><div class="city-tab" data-city="上海">上海</div><div class="city-tab" data-city="唐山">唐山</div><div class="city-tab" data-city="嘉兴">嘉兴</div><div class="city-tab" data-city="娄底">娄底</div><div class="city-tab" data-city="宜宾">宜宾</div><div class="city-tab" data-city="山东威海">山东威海</div><div class="city-tab" data-city="广东东莞">广东东莞</div><div class="city-tab" data-city="广东惠州">广东惠州</div><div class="city-tab" data-city="文登">文登</div><div class="city-tab" data-city="昆明">昆明</div><div class="city-tab" data-city="杭州">杭州</div><div class="city-tab" data-city="武汉">武汉</div><div class="city-tab" data-city="浦江">浦江</div><div class="city-tab" data-city="淄博">淄博</div><div class="city-tab" data-city="深圳">深圳</div><div class="city-tab" data-city="石岛">石岛</div><div class="city-tab" data-city="福鼎">福鼎</div><div class="city-tab" data-city="秦皇岛">秦皇岛</div><div class="city-tab" data-city="简阳">简阳</div><div class="city-tab" data-city="舟山">舟山</div><div class="city-tab" data-city="苏州">苏州</div><div class="city-tab" data-city="象山">象山</div><div class="city-tab" data-city="金华">金华</div><div class="city-tab" data-city="麻城">麻城</div></div>
+    <div class="gallery" id="gallery">      <div class="g-item g-type-video" data-city="上海" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E4%B8%8A%E6%B5%B7/c3b295fdfeea557e73b3e88bd9477f4f.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">上海 · 现场视频</span>
+      </div>      <div class="g-item g-reserved" data-city="唐山">
+        <div class="g-reserved-inner">
+          <span class="g-reserved-icon">&#128247;</span>
+          <span class="g-reserved-text">即将上线</span>
+        </div>
+        <span class="g-city">唐山</span>
+      </div>      <div class="g-item g-type-video" data-city="嘉兴" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/001cb5815ff9df7024088c84c2c70f25.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">嘉兴 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="嘉兴" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/2790c68879c71616da203cbdb2d638d8.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">嘉兴 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="嘉兴" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%98%89%E5%85%B4/ce5a06e3b0ea8a70fdb8ae7098ae1736.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">嘉兴 · 现场视频</span>
+      </div>      <div class="g-item g-reserved" data-city="娄底">
+        <div class="g-reserved-inner">
+          <span class="g-reserved-icon">&#128247;</span>
+          <span class="g-reserved-text">即将上线</span>
+        </div>
+        <span class="g-city">娄底</span>
+      </div>      <div class="g-item g-reserved" data-city="宜宾">
+        <div class="g-reserved-inner">
+          <span class="g-reserved-icon">&#128247;</span>
+          <span class="g-reserved-text">即将上线</span>
+        </div>
+        <span class="g-city">宜宾</span>
+      </div>      <div class="g-item g-type-video" data-city="山东威海" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%B1%B1%E4%B8%9C%E5%A8%81%E6%B5%B7/8a17a1e83aa2dc5e67386de67b84161f.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">山东威海 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="广东东莞" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%B9%BF%E4%B8%9C%E4%B8%9C%E8%8E%9E/97621cf866d1389f6432d432f83323d0.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">广东东莞 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="广东惠州" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E5%B9%BF%E4%B8%9C%E6%83%A0%E5%B7%9E/88125eee10beb6817b7f950bd9feffe8.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">广东惠州 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="文登" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%96%87%E7%99%BB/cf9ccef93e5f4524f6e881ba2f268563.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">文登 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="文登" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%96%87%E7%99%BB/ec90bf70b7d79bb8f4bb4bb95dc76df6.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">文登 · 现场视频</span>
+      </div>      <div class="g-item g-reserved" data-city="昆明">
+        <div class="g-reserved-inner">
+          <span class="g-reserved-icon">&#128247;</span>
+          <span class="g-reserved-text">即将上线</span>
+        </div>
+        <span class="g-city">昆明</span>
+      </div>      <div class="g-item g-type-video" data-city="杭州" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%9D%AD%E5%B7%9E/84fa13d9a2d7e9f28f5f943fe41fb613.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">杭州 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="杭州" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%9D%AD%E5%B7%9E/c9515c8e8e56afa10effd3eefe5fb9c8.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">杭州 · 现场视频</span>
+      </div>      <div class="g-item g-reserved" data-city="武汉">
+        <div class="g-reserved-inner">
+          <span class="g-reserved-icon">&#128247;</span>
+          <span class="g-reserved-text">即将上线</span>
+        </div>
+        <span class="g-city">武汉</span>
+      </div>      <div class="g-item g-type-video" data-city="浦江" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B5%A6%E6%B1%9F/2135daba3c228e76c3f2e7a237ae6a11.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">浦江 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="淄博" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/315ce667a4e13eadb478bbcffce81c67.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">淄博 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="淄博" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/7608ffe21e413462eff486edd3be0939.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">淄博 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="淄博" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/7908ff7503d2e1237b6b03cbf4d16342.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">淄博 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="淄博" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/91e8f145c90738ac809a708f0db6b798.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">淄博 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="淄博" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%84%E5%8D%9A/bf739a7a4045602af5638165b3d73471.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">淄博 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="深圳" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E6%B7%B1%E5%9C%B3/bbdd68a0fb8cd9d23ff472fd6379e99f.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">深圳 · 现场视频</span>
+      </div>      <div class="g-item" data-city="石岛" data-type="image" data-src="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/9ce0ae600ffeaa202d437c8ebb86644a.jpg">
+        <img src="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/9ce0ae600ffeaa202d437c8ebb86644a.jpg" alt="石岛地推" loading="lazy">
+        <span class="g-badge">地推实拍</span>
+        <span class="g-city">石岛</span>
+      </div>      <div class="g-item g-type-video" data-city="石岛" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/389f0d7b15e226a2fb99022c7113bc34.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">石岛 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="石岛" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/41dfe69f8b269f25d369669ad2769266.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">石岛 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="石岛" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/4ae0a0081479005347ee19703be3579d.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">石岛 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="石岛" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E7%9F%B3%E5%B2%9B/6f971cc0b0c53a7b8b9fd63045bc2ffb.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">石岛 · 现场视频</span>
+      </div>      <div class="g-item g-reserved" data-city="福鼎">
+        <div class="g-reserved-inner">
+          <span class="g-reserved-icon">&#128247;</span>
+          <span class="g-reserved-text">即将上线</span>
+        </div>
+        <span class="g-city">福鼎</span>
+      </div>      <div class="g-item" data-city="秦皇岛" data-type="image" data-src="https://wuxingjiaohui.icu/media/%E7%A7%A6%E7%9A%87%E5%B2%9B/927a536a9bb7f5f3e980fdefab30e697.jpg">
+        <img src="https://wuxingjiaohui.icu/media/%E7%A7%A6%E7%9A%87%E5%B2%9B/927a536a9bb7f5f3e980fdefab30e697.jpg" alt="秦皇岛地推" loading="lazy">
+        <span class="g-badge">地推实拍</span>
+        <span class="g-city">秦皇岛</span>
+      </div>      <div class="g-item g-reserved" data-city="简阳">
+        <div class="g-reserved-inner">
+          <span class="g-reserved-icon">&#128247;</span>
+          <span class="g-reserved-text">即将上线</span>
+        </div>
+        <span class="g-city">简阳</span>
+      </div>      <div class="g-item g-type-video" data-city="舟山" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%88%9F%E5%B1%B1/60f2c449f6ba569772052f0198689667.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">舟山 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="苏州" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%8B%8F%E5%B7%9E/919d10eb4ee78b6b266c208a5276a1a1.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">苏州 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="象山" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%B1%A1%E5%B1%B1/dc58329ea4327384855aa52790f58b48.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">象山 · 现场视频</span>
+      </div>      <div class="g-item g-type-video" data-city="象山" data-type="video" data-video="https://wuxingjiaohui.icu/media/%E8%B1%A1%E5%B1%B1/eb983eb5665e013395a5dd75aa0ab6f5.mp4">
+        <div class="g-video-poster"><span class="g-play"><span>&#9654;</span></span></div>
+        <span class="g-video-tag">视频</span>
+        <span class="g-city">象山 · 现场视频</span>
+      </div>      <div class="g-item" data-city="金华" data-type="image" data-src="https://wuxingjiaohui.icu/media/%E9%87%91%E5%8D%8E/a223dd1ad4d46fffcc409e2d046b42bb.jpg">
+        <img src="https://wuxingjiaohui.icu/media/%E9%87%91%E5%8D%8E/a223dd1ad4d46fffcc409e2d046b42bb.jpg" alt="金华地推" loading="lazy">
+        <span class="g-badge">地推实拍</span>
+        <span class="g-city">金华</span>
+      </div>      <div class="g-item g-reserved" data-city="麻城">
+        <div class="g-reserved-inner">
+          <span class="g-reserved-icon">&#128247;</span>
+          <span class="g-reserved-text">即将上线</span>
+        </div>
+        <span class="g-city">麻城</span>
+      </div></div>
+<!--SHOWCASE_END-->
 
     <!-- ========== 核心机制 ========== -->
     <div class="section-label">Core</div>
@@ -811,7 +1042,13 @@
     <div class="footer">霸天虎CONS · BSC链 · 透明可查 · 社区自治</div>
   </div>
 
-  <script>
+    <!-- ========== Lightbox ========== -->
+  <div class="lb" id="lightbox">
+    <div class="lb-close" id="lbClose">&times;</div>
+    <div class="lb-inner" id="lbInner"></div>
+    <div class="lb-cap" id="lbCap"></div>
+  </div>
+<script>
     function showToast(text) {
       const toast = document.getElementById("toast");
       document.getElementById("toastText").textContent = text;
