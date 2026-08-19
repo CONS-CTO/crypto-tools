@@ -627,6 +627,7 @@
   }
 <!--SHOWCASE_CSS_END-->
 
+
 <!--MEDIA_LOCK_CSS_START-->
   /* ===== 媒体私密锁 ===== */
   .g-slide { position: relative; }
@@ -687,15 +688,17 @@
     <div class="lock-bg"></div>
     <div class="media-lock-box">
       <div class="lock-logo">霸天虎 CONS</div>
-      <div class="lock-tip">私密内容 · 请输入访问密码</div>
-      <input id="mediaLockPwd" type="password" placeholder="访问密码" autocomplete="off" />
+      <div class="lock-tip">私密内容 · 请输入访问码</div>
+      <input id="mediaLockPwd" type="password" placeholder="访问码" autocomplete="off" />
       <button id="mediaLockBtn">解锁查看</button>
-      <div id="mediaLockErr" class="media-lock-err">密码错误，请重试</div>
-      <div class="media-lock-hint">视频 / 图片涉及工作室实拍隐私<br>输入密码后即可查看</div>
+      <div id="mediaLockErr" class="media-lock-err">访问码错误，请重试</div>
+      <div class="media-lock-hint">视频 / 图片涉及工作室实拍隐私<br>输入访问码后即可查看</div>
     </div>
   </div>
 
 <!--MEDIA_LOCK_HTML_END-->
+
+
 
 
 
@@ -1419,6 +1422,7 @@
 <!--SHOWCASE_JS_END-->
 </script>
 
+
 <!--MEDIA_LOCK_JS_START-->
 <script>
   (function(){
@@ -1433,7 +1437,7 @@
       if(slide.querySelector('.g-media-lock')) return;
       var ov = document.createElement('div');
       ov.className = 'g-media-lock';
-      ov.innerHTML = '<div class="g-media-lock-icon">&#128274;</div><div class="g-media-lock-text">点击查看实拍</div><div class="g-media-lock-sub">需输入访问密码</div>';
+      ov.innerHTML = '<div class="g-media-lock-icon">&#128274;</div><div class="g-media-lock-text">点击查看实拍</div><div class="g-media-lock-sub">需输入访问码</div>';
       slide.appendChild(ov);
     }
 
