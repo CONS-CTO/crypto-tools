@@ -626,39 +626,78 @@
     font-size: 30px; cursor: pointer; line-height: 1; font-weight: 300;
   }
 <!--SHOWCASE_CSS_END-->
-<!--LOCK_CSS_START-->
-  /* ===== 访问密码门 ===== */
-  #lockScreen{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;font-family:inherit;}
-  #lockScreen .lock-bg{position:absolute;inset:0;background:url('assets/cons-lock-bg.jpg') center/cover no-repeat;filter:brightness(.35);}
-  #lockScreen .lock-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,.55),rgba(15,23,42,.78));}
-  .lock-box{position:relative;width:min(86vw,340px);background:rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:30px 26px;text-align:center;color:#e2e8f0;box-shadow:0 20px 60px rgba(0,0,0,.45);}
-  .lock-logo{font-size:20px;font-weight:800;letter-spacing:1px;color:#fff;margin-bottom:6px;}
-  .lock-tip{font-size:13px;color:#cbd5e1;margin-bottom:18px;}
-  .lock-box input{width:100%;box-sizing:border-box;padding:11px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-size:15px;outline:none;text-align:center;}
-  .lock-box input::placeholder{color:#94a3b8;}
-  .lock-box button{margin-top:14px;width:100%;padding:11px;border:none;border-radius:10px;background:#2563eb;color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:.15s;}
-  .lock-box button:hover{background:#1d4ed8;}
-  .lock-err{display:none;color:#fca5a5;font-size:13px;margin-top:10px;}
-  .lock-note{font-size:11px;color:#94a3b8;margin-top:14px;line-height:1.7;}
 
-<!--LOCK_CSS_END-->
+<!--MEDIA_LOCK_CSS_START-->
+  /* ===== 媒体私密锁 ===== */
+  .g-slide { position: relative; }
+  .g-media-lock {
+    position: absolute; inset: 0; z-index: 10;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(15,23,42,0.55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    color: #fff; text-align: center; cursor: pointer;
+    transition: opacity .2s;
+  }
+  .g-media-lock-icon { font-size: 32px; margin-bottom: 6px; opacity: .9; }
+  .g-media-lock-text { font-size: 13px; font-weight: 700; letter-spacing: .5px; }
+  .g-media-lock-sub { font-size: 11px; color: #cbd5e1; margin-top: 4px; }
+  .g-slide.unlocked .g-media-lock { opacity: 0; pointer-events: none; }
+  .g-slide.unlocked img, .g-slide.unlocked video { filter: none; }
+  .g-slide img, .g-slide video {
+    filter: blur(8px);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none;
+  }
+  .g-slide.unlocked img, .g-slide.unlocked video { pointer-events: auto; }
+
+  #mediaLockModal {
+    position: fixed; inset: 0; z-index: 99999;
+    display: none; align-items: center; justify-content: center;
+    font-family: inherit;
+  }
+  #mediaLockModal.show { display: flex; }
+  #mediaLockModal .lock-bg { position: absolute; inset: 0; background: url('assets/cons-lock-bg.jpg') center/cover no-repeat; filter: brightness(.35); }
+  #mediaLockModal .lock-bg:after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,.55), rgba(15,23,42,.78)); }
+  .media-lock-box { position: relative; width: min(86vw, 340px); background: rgba(255,255,255,.08); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.18); border-radius: 18px; padding: 30px 26px; text-align: center; color: #e2e8f0; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+  .media-lock-box .lock-logo { font-size: 20px; font-weight: 800; letter-spacing: 1px; color: #fff; margin-bottom: 6px; }
+  .media-lock-box .lock-tip { font-size: 13px; color: #cbd5e1; margin-bottom: 18px; }
+  .media-lock-box input { width: 100%; box-sizing: border-box; padding: 11px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.12); color: #fff; font-size: 15px; outline: none; text-align: center; }
+  .media-lock-box input::placeholder { color: #94a3b8; }
+  .media-lock-box button { margin-top: 14px; width: 100%; padding: 11px; border: none; border-radius: 10px; background: #2563eb; color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; transition: .15s; }
+  .media-lock-box button:hover { background: #1d4ed8; }
+  .media-lock-err { display: none; color: #fca5a5; font-size: 13px; margin-top: 10px; }
+  .media-lock-hint { font-size: 11px; color: #94a3b8; margin-top: 14px; line-height: 1.7; }
+
+  /* 灯箱水印 */
+  .lb-inner { position: relative; }
+  .lb-inner::after {
+    content: "CONS 内部资料";
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-25deg);
+    font-size: clamp(24px, 8vw, 64px); font-weight: 900; color: rgba(255,255,255,.18);
+    pointer-events: none; white-space: nowrap; letter-spacing: 6px; z-index: 5;
+  }
+
+<!--MEDIA_LOCK_CSS_END-->
 </style>
 </head>
 <body>
-<!--LOCK_HTML_START-->
-  <div id="lockScreen">
+<!--MEDIA_LOCK_HTML_START-->
+  <div id="mediaLockModal">
     <div class="lock-bg"></div>
-    <div class="lock-box">
+    <div class="media-lock-box">
       <div class="lock-logo">霸天虎 CONS</div>
       <div class="lock-tip">私密内容 · 请输入访问密码</div>
-      <input id="lockPwd" type="password" placeholder="访问密码" autocomplete="off" />
-      <button id="lockBtn">进入</button>
-      <div id="lockErr" class="lock-err">密码错误，请重试</div>
-      <div class="lock-note">访问密码即 <b>cons588</b>。<br>首次查看视频/图片时浏览器会弹出认证框，请输入：<br>用户名 <b>cons</b> &nbsp; 密码 <b>cons588</b>（与访问密码相同）。</div>
+      <input id="mediaLockPwd" type="password" placeholder="访问密码" autocomplete="off" />
+      <button id="mediaLockBtn">解锁查看</button>
+      <div id="mediaLockErr" class="media-lock-err">密码错误，请重试</div>
+      <div class="media-lock-hint">视频 / 图片涉及工作室实拍隐私<br>输入密码后即可查看</div>
     </div>
   </div>
 
-<!--LOCK_HTML_END-->
+<!--MEDIA_LOCK_HTML_END-->
+
+
 
   <div class="toast" id="toast">
     <div class="toast-dot"></div>
@@ -1379,19 +1418,130 @@
     });
 <!--SHOWCASE_JS_END-->
 </script>
-<!--LOCK_JS_START-->
+
+<!--MEDIA_LOCK_JS_START-->
+<script>
   (function(){
-    var PWD="cons588";
-    var screen=document.getElementById("lockScreen");
-    function unlock(){
-      var v=document.getElementById("lockPwd").value;
-      if(v===PWD){ screen.style.display="none"; document.documentElement.classList.add("unlocked"); }
-      else { document.getElementById("lockErr").style.display="block"; }
+    var PING = 'https://wuxingjiaohui.icu/media/ping.txt';
+    var UNLOCK_URL = 'https://wuxingjiaohui.icu/media-unlock';
+    var STORAGE_KEY = 'cons_media_unlocked';
+    var PLACEHOLDER_IMG = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+    function $(id){ return document.getElementById(id); }
+
+    function addLockOverlay(slide){
+      if(slide.querySelector('.g-media-lock')) return;
+      var ov = document.createElement('div');
+      ov.className = 'g-media-lock';
+      ov.innerHTML = '<div class="g-media-lock-icon">&#128274;</div><div class="g-media-lock-text">点击查看实拍</div><div class="g-media-lock-sub">需输入访问密码</div>';
+      slide.appendChild(ov);
     }
-    document.getElementById("lockBtn").addEventListener("click",unlock);
-    document.getElementById("lockPwd").addEventListener("keydown",function(e){ if(e.key==="Enter") unlock(); });
+
+    function lockSlide(slide){
+      var img = slide.querySelector('img');
+      if(img && img.src && img.src !== PLACEHOLDER_IMG && !img.dataset.lockedSrc){
+        img.dataset.lockedSrc = img.src;
+        img.src = PLACEHOLDER_IMG;
+      }
+      var video = slide.querySelector('video');
+      if(video && video.src && !video.dataset.lockedSrc){
+        video.dataset.lockedSrc = video.src;
+        video.removeAttribute('src');
+        video.load();
+      }
+      addLockOverlay(slide);
+    }
+
+    function unlockSlide(slide){
+      slide.classList.add('unlocked');
+      var img = slide.querySelector('img');
+      if(img && img.dataset.lockedSrc){
+        img.src = img.dataset.lockedSrc;
+        img.removeAttribute('data-locked-src');
+      }
+      var video = slide.querySelector('video');
+      if(video && video.dataset.lockedSrc){
+        video.src = video.dataset.lockedSrc;
+        video.removeAttribute('data-locked-src');
+        video.load();
+        try{ video.currentTime = 0.1; }catch(e){}
+      }
+    }
+
+    function lockAll(){
+      document.querySelectorAll('.g-slide[data-type="image"], .g-slide[data-type="video"]').forEach(lockSlide);
+    }
+
+    function unlockAll(){
+      sessionStorage.setItem(STORAGE_KEY, '1');
+      document.querySelectorAll('.g-slide[data-type="image"], .g-slide[data-type="video"]').forEach(unlockSlide);
+    }
+
+    function showModal(){ $('mediaLockModal').classList.add('show'); $('mediaLockPwd').focus(); }
+    function hideModal(){ $('mediaLockModal').classList.remove('show'); $('mediaLockErr').style.display = 'none'; $('mediaLockPwd').value = ''; }
+
+    function tryUnlock(){
+      var pwd = $('mediaLockPwd').value;
+      fetch(UNLOCK_URL, {
+        method: 'POST',
+        headers: { 'X-Media-Pwd': pwd },
+        mode: 'cors',
+        credentials: 'include'
+      }).then(function(r){
+        if(!r.ok) throw new Error('auth');
+        return fetch(PING, { mode: 'cors', credentials: 'include' });
+      }).then(function(r){
+        if(!r.ok) throw new Error('ping');
+        unlockAll();
+        hideModal();
+      }).catch(function(){
+        $('mediaLockErr').style.display = 'block';
+      });
+    }
+
+    $('mediaLockBtn').addEventListener('click', tryUnlock);
+    $('mediaLockPwd').addEventListener('keydown', function(e){ if(e.key === 'Enter') tryUnlock(); });
+
+    // 捕获阶段先拦截，未解锁时阻止灯箱打开
+    document.getElementById('gallery').addEventListener('click', function(e){
+      var slide = e.target.closest('.g-slide[data-type]');
+      if(!slide || slide.classList.contains('unlocked')) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      showModal();
+    }, true);
+
+    // 初始化：已解锁则直接恢复；否则锁定
+    if(sessionStorage.getItem(STORAGE_KEY) === '1'){
+      // 用一次 ping 校验 cookie 是否仍有效，失效则重新锁定
+      fetch(PING, { mode: 'cors', credentials: 'include' }).then(function(r){
+        if(r.ok) unlockAll(); else lockAll();
+      }).catch(function(){ lockAll(); });
+    } else {
+      lockAll();
+    }
+
+    // 全局反下载/反截图辅助
+    document.addEventListener('contextmenu', function(e){ if(e.target.closest('img, video')) e.preventDefault(); });
+    document.addEventListener('dragstart', function(e){ if(e.target.closest('img, video')) e.preventDefault(); });
+
+    // 灯箱视频去掉下载按钮
+    var lbInner = document.getElementById('lbInner');
+    if(lbInner){
+      new MutationObserver(function(muts){
+        muts.forEach(function(m){
+          m.addedNodes.forEach(function(node){
+            if(node.tagName === 'VIDEO'){
+              node.setAttribute('controlsList', 'nodownload');
+              node.setAttribute('disablePictureInPicture', 'true');
+            }
+          });
+        });
+      }).observe(lbInner, {childList: true});
+    }
   })();
 
-<!--LOCK_JS_END-->
+</script>
+<!--MEDIA_LOCK_JS_END-->
 </body>
 </html>
