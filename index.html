@@ -628,6 +628,7 @@
 <!--SHOWCASE_CSS_END-->
 
 
+
 <!--MEDIA_LOCK_CSS_START-->
   /* ===== 媒体私密锁 ===== */
   .g-slide { position: relative; }
@@ -669,6 +670,11 @@
   .media-lock-box button:hover { background: #1d4ed8; }
   .media-lock-err { display: none; color: #fca5a5; font-size: 13px; margin-top: 10px; }
   .media-lock-hint { font-size: 11px; color: #94a3b8; margin-top: 14px; line-height: 1.7; }
+  .media-lock-close {
+    position: absolute; top: 10px; right: 14px;
+    font-size: 26px; line-height: 1; color: #cbd5e1; cursor: pointer;
+  }
+  .media-lock-close:hover { color: #fff; }
 
   /* 灯箱水印 */
   .lb-inner { position: relative; }
@@ -687,6 +693,7 @@
   <div id="mediaLockModal">
     <div class="lock-bg"></div>
     <div class="media-lock-box">
+      <div class="media-lock-close" id="mediaLockClose">&times;</div>
       <div class="lock-logo">霸天虎 CONS</div>
       <div class="lock-tip">私密内容 · 请输入访问码</div>
       <input id="mediaLockPwd" type="password" placeholder="访问码" autocomplete="off" />
@@ -697,6 +704,8 @@
   </div>
 
 <!--MEDIA_LOCK_HTML_END-->
+
+
 
 
 
@@ -1423,6 +1432,7 @@
 </script>
 
 
+
 <!--MEDIA_LOCK_JS_START-->
 <script>
   (function(){
@@ -1481,7 +1491,7 @@
       document.querySelectorAll('.g-slide[data-type="image"], .g-slide[data-type="video"]').forEach(unlockSlide);
     }
 
-    function showModal(){ $('mediaLockModal').classList.add('show'); $('mediaLockPwd').focus(); }
+    function showModal(){ $('mediaLockModal').classList.add('show'); $('mediaLockErr').style.display = 'none'; $('mediaLockPwd').value = ''; $('mediaLockPwd').focus(); }
     function hideModal(){ $('mediaLockModal').classList.remove('show'); $('mediaLockErr').style.display = 'none'; $('mediaLockPwd').value = ''; }
 
     function tryUnlock(){
@@ -1505,6 +1515,9 @@
 
     $('mediaLockBtn').addEventListener('click', tryUnlock);
     $('mediaLockPwd').addEventListener('keydown', function(e){ if(e.key === 'Enter') tryUnlock(); });
+    $('mediaLockClose').addEventListener('click', hideModal);
+    $('mediaLockModal').querySelector('.lock-bg').addEventListener('click', hideModal);
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') hideModal(); });
 
     // 捕获阶段先拦截，未解锁时阻止灯箱打开
     document.getElementById('gallery').addEventListener('click', function(e){
