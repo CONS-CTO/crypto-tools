@@ -626,9 +626,40 @@
     font-size: 30px; cursor: pointer; line-height: 1; font-weight: 300;
   }
 <!--SHOWCASE_CSS_END-->
+<!--LOCK_CSS_START-->
+  /* ===== 访问密码门 ===== */
+  #lockScreen{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;font-family:inherit;}
+  #lockScreen .lock-bg{position:absolute;inset:0;background:url('assets/cons-lock-bg.jpg') center/cover no-repeat;filter:brightness(.35);}
+  #lockScreen .lock-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,.55),rgba(15,23,42,.78));}
+  .lock-box{position:relative;width:min(86vw,340px);background:rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:30px 26px;text-align:center;color:#e2e8f0;box-shadow:0 20px 60px rgba(0,0,0,.45);}
+  .lock-logo{font-size:20px;font-weight:800;letter-spacing:1px;color:#fff;margin-bottom:6px;}
+  .lock-tip{font-size:13px;color:#cbd5e1;margin-bottom:18px;}
+  .lock-box input{width:100%;box-sizing:border-box;padding:11px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-size:15px;outline:none;text-align:center;}
+  .lock-box input::placeholder{color:#94a3b8;}
+  .lock-box button{margin-top:14px;width:100%;padding:11px;border:none;border-radius:10px;background:#2563eb;color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:.15s;}
+  .lock-box button:hover{background:#1d4ed8;}
+  .lock-err{display:none;color:#fca5a5;font-size:13px;margin-top:10px;}
+  .lock-note{font-size:11px;color:#94a3b8;margin-top:14px;line-height:1.7;}
+
+<!--LOCK_CSS_END-->
 </style>
 </head>
 <body>
+<!--LOCK_HTML_START-->
+  <div id="lockScreen">
+    <div class="lock-bg"></div>
+    <div class="lock-box">
+      <div class="lock-logo">霸天虎 CONS</div>
+      <div class="lock-tip">私密内容 · 请输入访问密码</div>
+      <input id="lockPwd" type="password" placeholder="访问密码" autocomplete="off" />
+      <button id="lockBtn">进入</button>
+      <div id="lockErr" class="lock-err">密码错误，请重试</div>
+      <div class="lock-note">访问密码即 <b>cons588</b>。<br>首次查看视频/图片时浏览器会弹出认证框，请输入：<br>用户名 <b>cons</b> &nbsp; 密码 <b>cons588</b>（与访问密码相同）。</div>
+    </div>
+  </div>
+
+<!--LOCK_HTML_END-->
+
   <div class="toast" id="toast">
     <div class="toast-dot"></div>
     <span id="toastText">已复制成功</span>
@@ -1348,5 +1379,19 @@
     });
 <!--SHOWCASE_JS_END-->
 </script>
+<!--LOCK_JS_START-->
+  (function(){
+    var PWD="cons588";
+    var screen=document.getElementById("lockScreen");
+    function unlock(){
+      var v=document.getElementById("lockPwd").value;
+      if(v===PWD){ screen.style.display="none"; document.documentElement.classList.add("unlocked"); }
+      else { document.getElementById("lockErr").style.display="block"; }
+    }
+    document.getElementById("lockBtn").addEventListener("click",unlock);
+    document.getElementById("lockPwd").addEventListener("keydown",function(e){ if(e.key==="Enter") unlock(); });
+  })();
+
+<!--LOCK_JS_END-->
 </body>
 </html>
