@@ -1410,7 +1410,7 @@
     <div     <!-- ========== 关键地址说明 ========== -->
     <div class="section-label">Key Addresses</div>
     <div class="section-title">关键地址说明</div>
-    <p class="showcase-intro">合约地址见上方区块。以下为其余官方链上地址，请认准核对，谨防仿冒与假地址诈骗。基金会锁仓 / mapping / mapping 分发等内部地址核对后补充。</p>
+    <p class="showcase-intro">合约地址见上方区块。以下为其余官方链上地址，请认准核对，谨防仿冒与假地址诈骗。mapping / mapping 分发等内部地址核对后补充。</p>
     <div class="info-card">
       <div class="contract-section">
         <div class="contract-row">
@@ -1434,13 +1434,23 @@
           </div>
         </div>
         
+                <div class="contract-row">
+          <div class="contract-label">基金会地址</div>
+          <div style="flex:1;">
+            <div class="contract-key">基金会锁仓地址</div>
+            <div class="addr-box">
+              <div class="addr-text">0x8dd67023e184983537f7d78b4723df930bc45d03</div>
+              <button class="btn-copy-addr" onclick="copyText('0x8dd67023e184983537f7d78b4723df930bc45d03', this, '已复制', '复制', '地址已复制')">复制</button>
+            </div>
+          </div>
+        </div>
+
         <div class="contract-row">
           <div class="contract-label">黑洞地址</div>
           <div style="flex:1;">
-            <div class="contract-key">销毁 / 罚没地址（黑名单，切勿向此转账）</div>
+            <div class="contract-key">黑洞销毁地址，切勿向此转账</div>
             <div class="addr-box">
               <div class="addr-text">0x000000000000000000000000000000000000dEaD</div>
-              <button class="btn-copy-addr" onclick="copyText('0x000000000000000000000000000000000000dEaD', this, '已复制', '复制', '地址已复制')">复制</button>
             </div>
           </div>
         </div>
