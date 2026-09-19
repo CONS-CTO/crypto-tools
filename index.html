@@ -120,6 +120,7 @@
   .card-tp .card-icon { background: #ecfdf5; }
   .card-ave .card-icon { background: #fffbeb; }
   .card-musk .card-icon { background: #faf5ff; }
+  .card-binance .card-icon { background: #fff8e1; }
   .card-body { flex: 1; min-width: 0; }
   .card-title { font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
   .card-sub { font-size: 14px; color: #7c8594; }
@@ -752,6 +753,17 @@
         </div>
         <div class="card-action">
           <span class="btn btn-copy" id="btnMusk">复制链接</span>
+        </div>
+      </div>
+
+      <div class="card card-binance" onclick="copyLink('binance')">
+        <div class="card-icon"><img src="https://wuxingjiaohui.icu/apks/binance.png" alt="Binance"></div>
+        <div class="card-body">
+          <div class="card-title">币安交易所&amp;web3钱包注册地址</div>
+          <div class="card-sub">注册即享交易 &amp; Web3 钱包</div>
+        </div>
+        <div class="card-action">
+          <span class="btn btn-copy" id="btnBinance">复制链接</span>
         </div>
       </div>
 
@@ -1444,9 +1456,11 @@
 
     function copyLink(type) {
       const urls = {
-        musk: "https://muskswap.club/?utm_source=tokenpocket&inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0x4Cb0F56Cc6d56d8B06059eE3b59a54a6910ED336"
+        musk: "https://muskswap.club/?utm_source=tokenpocket&inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0x4Cb0F56Cc6d56d8B06059eE3b59a54a6910ED336",
+        binance: "https://www.bsmkweb.cc/referral/earn-together/refer2earn-usdc/claim?hl=zh-CN&ref=GRO_28502_V24O6&utm_medium=web_share_copy&utm_source=referral_entrance"
       };
-      copyText(urls[type], document.getElementById("btnMusk"), "已复制", "复制链接", "链接已复制");
+      const btnIds = { musk: "btnMusk", binance: "btnBinance" };
+      copyText(urls[type], document.getElementById(btnIds[type]), "已复制", "复制链接", "链接已复制");
     }
 
     function copyAddr() {
