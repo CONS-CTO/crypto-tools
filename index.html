@@ -873,6 +873,13 @@
   <div class="pl-result" id="pl-result">
     <h3>计算结果（对照 PinkLock 官网填写）</h3>
     <div class="pl-row">
+      <div class="pl-row-label">TGE 日期（UTC）</div>
+      <div class="pl-row-right">
+        <div class="pl-row-val" id="pl-tgeDateVal" style="font-size:15px;">--</div>
+        <div class="pl-row-pos">解锁开始时间（当前北京时间转 UTC）</div>
+      </div>
+    </div>
+    <div class="pl-row">
       <div class="pl-row-label">TGE 百分比</div>
       <div class="pl-row-right">
         <div class="pl-row-val" id="pl-tgeVal">0.1%</div>
@@ -901,7 +908,7 @@
       </div>
     </div>
     <div class="pl-row">
-      <div class="pl-row-label">每期实际释放数量</div>
+      <div class="pl-row-label" id="pl-perLabel">每期实际释放数量</div>
       <div class="pl-row-right">
         <div class="pl-row-val" id="pl-perVal">0.0000 个</div>
         <div class="pl-row-pos">仅供核对，无需填写</div>
@@ -949,10 +956,19 @@
     var perAmount = amount * (cyclePct / 100);
 
     $('pl-tgeVal').textContent      = tge.toFixed(1) + '%';
-    $('pl-cycleDaysVal').textContent = days + ' 天';
+    $('pl-cycleDaysVal').textContent = days;                 // 周期（天）：纯数字
     $('pl-cycleVal').textContent    = cyclePct.toFixed(3);   // 仅数字，不带 %
     $('pl-periodsVal').textContent  = periods + ' 期';
+    $('pl-perLabel').textContent    = '每' + cycle + '天实际释放数量';
     $('pl-perVal').textContent       = perAmount.toFixed(4) + ' 个';
+
+    // TGE 日期（UTC）：用户当前北京时间（UTC+8）换算成 UTC 显示
+    var tgeUtc = new Date(); // 内部为 UTC 时间，即北京时间减 8 小时
+    var p2 = function(nn){ return String(nn).padStart(2, '0'); };
+    $('pl-tgeDateVal').textContent =
+      tgeUtc.getUTCFullYear() + '-' + p2(tgeUtc.getUTCMonth() + 1) + '-' + p2(tgeUtc.getUTCDate()) +
+      ' ' + p2(tgeUtc.getUTCHours()) + ':' + p2(tgeUtc.getUTCMinutes()) + ':' + p2(tgeUtc.getUTCSeconds()) + ' UTC';
+
     $('pl-result').classList.add('show');
   });
 })();
