@@ -847,108 +847,119 @@
     .pl-note{font-size:12px;color:var(--pink-dark);background:#fdf2f8;border-radius:10px;padding:10px;margin-top:14px;line-height:1.5;}
     </style>
     <div class="pl-calc">
-      <div class="pl-sub">算出官网要填的百分比，照着抄就行</div>
+    <div class="pl-sub">算出官网要填的百分比，照着抄就行</div>
 
-      <div class="pl-field">
-        <label class="pl-label">锁仓总数量（个）</label>
-        <input class="pl-input" id="pl-amount" type="number" inputmode="decimal" placeholder="例如 100">
-        <div class="pl-hint">👉 你准备锁进粉红锁的代币总个数，比如 100</div>
-      </div>
+  <div class="pl-field">
+    <label class="pl-label">锁仓总数量（个）</label>
+    <input class="pl-input" id="pl-amount" type="number" inputmode="decimal" placeholder="例如 100">
+    <div class="pl-hint">👉 你准备锁进粉红锁的代币总个数，比如 100</div>
+  </div>
 
-      <div class="pl-field">
-        <label class="pl-label">锁仓时间（年）</label>
-        <input class="pl-input" id="pl-years" type="number" inputmode="decimal" placeholder="例如 1">
-        <div class="pl-hint">👉 打算锁几年，比如锁1年就填1，没有就填0</div>
-      </div>
+  <div class="pl-field">
+    <label class="pl-label">锁仓天数（天）</label>
+    <input class="pl-input" id="pl-days" type="number" inputmode="decimal" placeholder="例如 365（1年）">
+    <div class="pl-hint">👉 打算锁多少天，1年填365，没有就填0</div>
+  </div>
 
-      <div class="pl-field">
-        <label class="pl-label">锁仓时间（月）</label>
-        <input class="pl-input" id="pl-months" type="number" inputmode="decimal" placeholder="例如 0">
-        <div class="pl-hint">👉 除了整年外，多出的零头月数，没有就填0</div>
-      </div>
+  <div class="pl-field">
+    <label class="pl-label">释放周期（天）</label>
+    <input class="pl-input" id="pl-cycle" type="number" inputmode="decimal" placeholder="例如 30">
+    <div class="pl-hint">👉 每隔多少天释放一次，每天填1，每月填30</div>
+  </div>
 
-      <div class="pl-field">
-        <label class="pl-label">释放周期（天）</label>
-        <input class="pl-input" id="pl-cycle" type="number" inputmode="decimal" placeholder="例如 30">
-        <div class="pl-hint">👉 每隔多少天释放一次，每天填1，每月填30</div>
-      </div>
+  <button class="pl-btn" id="pl-calcBtn">开始计算</button>
+  <div class="pl-error" id="pl-error"></div>
 
-      <button class="pl-btn" id="pl-calcBtn">开始计算</button>
-      <div class="pl-error" id="pl-error"></div>
-
-      <div class="pl-result" id="pl-result">
-        <h3>计算结果（对照 PinkLock 官网填写）</h3>
-        <div class="pl-row">
-          <div class="pl-row-label">TGE 百分比</div>
-          <div class="pl-row-right">
-            <div class="pl-row-val" id="pl-tgeVal">0.01%</div>
-            <div class="pl-row-pos">填入官网的 TGE Percent 框</div>
-          </div>
-        </div>
-        <div class="pl-row">
-          <div class="pl-row-label">周期释放百分比</div>
-          <div class="pl-row-right">
-            <div class="pl-row-val" id="pl-cycleVal">0.000%</div>
-            <div class="pl-row-pos">填入官网的 Cycle Release Percent 框</div>
-          </div>
-        </div>
-        <div class="pl-row">
-          <div class="pl-row-label">总共需要释放期数</div>
-          <div class="pl-row-right">
-            <div class="pl-row-val" id="pl-periodsVal">0 期</div>
-            <div class="pl-row-pos">仅供核对，无需填写</div>
-          </div>
-        </div>
-        <div class="pl-row">
-          <div class="pl-row-label">每期实际释放数量</div>
-          <div class="pl-row-right">
-            <div class="pl-row-val" id="pl-perVal">0.0000 个</div>
-            <div class="pl-row-pos">仅供核对，无需填写</div>
-          </div>
-        </div>
-        <div class="pl-note">💡 周期释放百分比已向下截断，确保各项相加不超过 100%。TGE 固定 0.01%，剩余 99.99% 平摊到每一期。</div>
+  <div class="pl-result" id="pl-result">
+    <h3>计算结果（对照 PinkLock 官网填写）</h3>
+    <div class="pl-row">
+      <div class="pl-row-label">TGE 百分比</div>
+      <div class="pl-row-right">
+        <div class="pl-row-val" id="pl-tgeVal">0.1%</div>
+        <div class="pl-row-pos">填入官网的 TGE Percent 框</div>
       </div>
     </div>
-    <script>
-    (function(){
-      var $ = function(id){ return document.getElementById(id); };
-      function trunc3(x){ return Math.floor(x * 1000 + 1e-9) / 1000; }
-      $('pl-calcBtn').addEventListener('click', function(){
-        var amount = parseFloat($('pl-amount').value);
-        var years  = parseFloat($('pl-years').value);
-        var months = parseFloat($('pl-months').value);
-        var cycle  = parseFloat($('pl-cycle').value);
-        var err = $('pl-error');
-        err.classList.remove('show');
-        if ([amount, years, months, cycle].some(function(v){ return isNaN(v); })) {
-          err.textContent = '请把 4 个框都填好数字再算～';
-          err.classList.add('show'); return;
-        }
-        if (amount <= 0) {
-          err.textContent = '锁仓总数量要大于 0';
-          err.classList.add('show'); return;
-        }
-        var totalDays = years * 365 + months * 30;
-        if (totalDays <= 0 || cycle <= 0) {
-          err.textContent = '锁仓时间或释放周期不能为 0，算不出期数';
-          err.classList.add('show'); return;
-        }
-        var periods = Math.floor(totalDays / cycle);
-        if (periods < 1) {
-          err.textContent = '释放周期比锁仓总天数还大，算不出期数';
-          err.classList.add('show'); return;
-        }
-        var tge = 0.01;
-        var cyclePct = trunc3(99.99 / periods);
-        var perAmount = amount * (cyclePct / 100);
-        $('pl-tgeVal').textContent = tge.toFixed(2) + '%';
-        $('pl-cycleVal').textContent = cyclePct.toFixed(3) + '%';
-        $('pl-periodsVal').textContent = periods + ' 期';
-        $('pl-perVal').textContent = perAmount.toFixed(4) + ' 个';
-        $('pl-result').classList.add('show');
-      });
-    })();
-    </script>
+    <div class="pl-row">
+      <div class="pl-row-label">周期（天）</div>
+      <div class="pl-row-right">
+        <div class="pl-row-val" id="pl-cycleDaysVal">0 天</div>
+        <div class="pl-row-pos">仅供核对，无需填写</div>
+      </div>
+    </div>
+    <div class="pl-row">
+      <div class="pl-row-label">周期释放百分比</div>
+      <div class="pl-row-right">
+        <div class="pl-row-val" id="pl-cycleVal">0.000</div>
+        <div class="pl-row-pos">填入官网的 Cycle Release Percent 框（只填数字，不带 %）</div>
+      </div>
+    </div>
+    <div class="pl-row">
+      <div class="pl-row-label">总共需要释放期数</div>
+      <div class="pl-row-right">
+        <div class="pl-row-val" id="pl-periodsVal">0 期</div>
+        <div class="pl-row-pos">仅供核对，无需填写</div>
+      </div>
+    </div>
+    <div class="pl-row">
+      <div class="pl-row-label">每期实际释放数量</div>
+      <div class="pl-row-right">
+        <div class="pl-row-val" id="pl-perVal">0.0000 个</div>
+        <div class="pl-row-pos">仅供核对，无需填写</div>
+      </div>
+    </div>
+    <div class="pl-note">💡 周期释放百分比已向下截断，确保各项相加不超过 100%。TGE 固定 0.1%，剩余 99.9% 平摊到每一期。</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  // 向下截断到 3 位小数（如 0.2739 -> 0.273），+1e-9 防止浮点误差
+  function trunc3(x){ return Math.floor(x * 1000 + 1e-9) / 1000; }
+
+  $('pl-calcBtn').addEventListener('click', function(){
+    var amount = parseFloat($('pl-amount').value);
+    var days   = parseFloat($('pl-days').value);
+    var cycle  = parseFloat($('pl-cycle').value);
+    var err = $('pl-error');
+    err.classList.remove('show');
+
+    if ([amount, days, cycle].some(function(v){ return isNaN(v); })) {
+      err.textContent = '请把 3 个框都填好数字再算～';
+      err.classList.add('show'); return;
+    }
+    if (amount <= 0) {
+      err.textContent = '锁仓总数量要大于 0';
+      err.classList.add('show'); return;
+    }
+
+    var totalDays = days;
+    if (totalDays <= 0 || cycle <= 0) {
+      err.textContent = '锁仓时间或释放周期不能为 0，算不出期数';
+      err.classList.add('show'); return;
+    }
+    var periods = Math.floor(totalDays / cycle);   // 总期数：向下取整
+    if (periods < 1) {
+      err.textContent = '释放周期比锁仓总天数还大，算不出期数';
+      err.classList.add('show'); return;
+    }
+
+    var tge      = 0.1;                   // TGE 固定 0.1%
+    var cyclePct = trunc3(99.9 / periods); // 周期释放百分比：向下截断 3 位（剩余 99.9% 平摊）
+    var perAmount = amount * (cyclePct / 100);
+
+    $('pl-tgeVal').textContent      = tge.toFixed(1) + '%';
+    $('pl-cycleDaysVal').textContent = days + ' 天';
+    $('pl-cycleVal').textContent    = cyclePct.toFixed(3);   // 仅数字，不带 %
+    $('pl-periodsVal').textContent  = periods + ' 期';
+    $('pl-perVal').textContent       = perAmount.toFixed(4) + ' 个';
+    $('pl-result').classList.add('show');
+  });
+})();
+</script>
+</body>
+</html>
+
 
 
     <!--SHOWCASE_START-->
