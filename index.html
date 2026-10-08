@@ -790,6 +790,16 @@
           </div>
         </div>
       </div>
+      <div class="card card-xuanfeng" onclick="copyLink('xuanfeng')">
+        <div class="card-icon"><img src="https://wuxingjiaohui.icu/apks/xuanfeng.ico" alt="旋风加速器"></div>
+        <div class="card-body">
+          <div class="card-title">旋风加速器</div>
+          <div class="card-sub">高速稳定 · 一键加速</div>
+        </div>
+        <div class="card-action">
+          <span class="btn btn-copy" id="btnXuanfeng">复制链接</span>
+        </div>
+      </div>
     </div>
 
         <!-- ========== PinkLock 锁仓参数计算器 ========== -->
@@ -1644,9 +1654,10 @@
     function copyLink(type) {
       const urls = {
         musk: "https://muskswap.club/?utm_source=tokenpocket&inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0x4Cb0F56Cc6d56d8B06059eE3b59a54a6910ED336",
-        binance: "https://www.bsmkweb.cc/referral/earn-together/refer2earn-usdc/claim?hl=zh-CN&ref=GRO_28502_V24O6&utm_medium=web_share_copy&utm_source=referral_entrance"
+        binance: "https://www.bsmkweb.cc/referral/earn-together/refer2earn-usdc/claim?hl=zh-CN&ref=GRO_28502_V24O6&utm_medium=web_share_copy&utm_source=referral_entrance",
+        xuanfeng: "https://www.94491135.com/U83CAPQ"
       };
-      const btnIds = { musk: "btnMusk", binance: "btnBinance" };
+      const btnIds = { musk: "btnMusk", binance: "btnBinance", xuanfeng: "btnXuanfeng" };
       copyText(urls[type], document.getElementById(btnIds[type]), "已复制", "复制链接", "链接已复制");
     }
 
