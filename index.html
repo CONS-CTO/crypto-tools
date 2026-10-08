@@ -889,7 +889,7 @@
     <div class="pl-row">
       <div class="pl-row-label">周期（天）</div>
       <div class="pl-row-right">
-        <div class="pl-row-val" id="pl-cycleDaysVal">0 天</div>
+        <div class="pl-row-val" id="pl-cycleDaysVal">0</div>
         <div class="pl-row-pos">仅供核对，无需填写</div>
       </div>
     </div>
@@ -956,7 +956,7 @@
     var perAmount = amount * (cyclePct / 100);
 
     $('pl-tgeVal').textContent      = tge.toFixed(1);   // TGE 纯数字，不带 %
-    $('pl-cycleDaysVal').textContent = days;                 // 周期（天）：纯数字
+    $('pl-cycleDaysVal').textContent = cycle;                 // 周期（天）：纯数字
     $('pl-cycleVal').textContent    = cyclePct.toFixed(3);   // 仅数字，不带 %
     $('pl-periodsVal').textContent  = periods + ' 期';
     $('pl-perLabel').textContent    = '每' + cycle + '天实际释放数量';
