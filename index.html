@@ -801,14 +801,14 @@
         </div>
       </div>
       <!-- 粉红锁官网 -->
-      <div class="card card-pinksale">
+      <div class="card card-pinksale" onclick="copyLink('pinksale')">
         <div class="card-icon"><img src="https://wuxingjiaohui.icu/apks/pinksale.svg" alt="粉红锁 PinkSale"></div>
         <div class="card-body">
           <div class="card-title">粉红锁官网</div>
           <div class="card-sub">PinkSale 锁仓 · 创建锁仓</div>
-          <div class="card-links">
-            <a class="dl-link official" href="https://www.pinksale.finance/pinklock/create" target="_blank" rel="noopener">进入官网 ↗</a>
-          </div>
+        </div>
+        <div class="card-action">
+          <span class="btn btn-copy" id="btnPinksale">复制链接</span>
         </div>
       </div>
     </div>
@@ -1666,8 +1666,9 @@
       const urls = {
         musk: "https://muskswap.club/?utm_source=tokenpocket&inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0x4Cb0F56Cc6d56d8B06059eE3b59a54a6910ED336",
         binance: "https://www.bsmkweb.cc/referral/earn-together/refer2earn-usdc/claim?hl=zh-CN&ref=GRO_28502_V24O6&utm_medium=web_share_copy&utm_source=referral_entrance",
+        pinksale: "https://www.pinksale.finance/pinklock/create",
       };
-      const btnIds = { musk: "btnMusk", binance: "btnBinance" };
+      const btnIds = { musk: "btnMusk", binance: "btnBinance", pinksale: "btnPinksale" };
       copyText(urls[type], document.getElementById(btnIds[type]), "已复制", "复制链接", "链接已复制");
     }
 
