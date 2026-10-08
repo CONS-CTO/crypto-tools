@@ -792,6 +792,144 @@
       </div>
     </div>
 
+        <!-- ========== PinkLock 锁仓参数计算器 ========== -->
+    <div class="section-title">粉红锁锁仓参数计算器</div>
+    <style>
+    .pl-calc{
+      --pink:#ec4899; --pink-light:#fce7f3; --pink-dark:#be185d;
+      --text:#1f2937; --gray:#9ca3af;
+      max-width:480px; margin:16px auto 0; padding:0 4px;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+      color:var(--text);
+    }
+    .pl-calc *{box-sizing:border-box;}
+    .pl-title{font-size:18px;font-weight:700;color:var(--pink-dark);text-align:center;margin-bottom:4px;}
+    .pl-sub{font-size:13px;color:var(--gray);text-align:center;margin-bottom:16px;}
+    .pl-field{margin-bottom:14px;}
+    .pl-label{font-size:14px;font-weight:600;margin-bottom:6px;display:block;}
+    .pl-input{width:100%;padding:12px 14px;font-size:16px;border:2px solid #fbcfe8;border-radius:12px;outline:none;transition:border-color .2s;}
+    .pl-input:focus{border-color:var(--pink);}
+    .pl-hint{font-size:12px;color:var(--gray);margin-top:6px;line-height:1.5;}
+    .pl-btn{width:100%;padding:14px;font-size:16px;font-weight:700;color:#fff;background:var(--pink);border:none;border-radius:12px;cursor:pointer;margin-top:6px;}
+    .pl-btn:active{background:var(--pink-dark);}
+    .pl-error{color:#dc2626;font-size:13px;margin-top:10px;display:none;}
+    .pl-error.show{display:block;}
+    .pl-result{margin-top:20px;background:var(--pink-light);border-radius:16px;padding:18px;display:none;}
+    .pl-result.show{display:block;}
+    .pl-result h3{font-size:15px;color:var(--pink-dark);margin-bottom:14px;text-align:center;}
+    .pl-row{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 0;border-bottom:1px solid #f9a8d4;}
+    .pl-row:last-child{border-bottom:none;}
+    .pl-row-label{font-size:13px;font-weight:600;flex:0 0 38%;}
+    .pl-row-right{flex:1;text-align:right;}
+    .pl-row-val{font-size:22px;font-weight:800;color:var(--pink-dark);}
+    .pl-row-pos{font-size:11px;color:var(--gray);margin-top:2px;}
+    .pl-note{font-size:12px;color:var(--pink-dark);background:#fdf2f8;border-radius:10px;padding:10px;margin-top:14px;line-height:1.5;}
+    </style>
+    <div class="pl-calc">
+      <div class="pl-sub">算出官网要填的百分比，照着抄就行</div>
+
+      <div class="pl-field">
+        <label class="pl-label">锁仓总数量（个）</label>
+        <input class="pl-input" id="pl-amount" type="number" inputmode="decimal" placeholder="例如 100">
+        <div class="pl-hint">👉 你准备锁进粉红锁的代币总个数，比如 100</div>
+      </div>
+
+      <div class="pl-field">
+        <label class="pl-label">锁仓时间（年）</label>
+        <input class="pl-input" id="pl-years" type="number" inputmode="decimal" placeholder="例如 1">
+        <div class="pl-hint">👉 打算锁几年，比如锁1年就填1，没有就填0</div>
+      </div>
+
+      <div class="pl-field">
+        <label class="pl-label">锁仓时间（月）</label>
+        <input class="pl-input" id="pl-months" type="number" inputmode="decimal" placeholder="例如 0">
+        <div class="pl-hint">👉 除了整年外，多出的零头月数，没有就填0</div>
+      </div>
+
+      <div class="pl-field">
+        <label class="pl-label">释放周期（天）</label>
+        <input class="pl-input" id="pl-cycle" type="number" inputmode="decimal" placeholder="例如 30">
+        <div class="pl-hint">👉 每隔多少天释放一次，每天填1，每月填30</div>
+      </div>
+
+      <button class="pl-btn" id="pl-calcBtn">开始计算</button>
+      <div class="pl-error" id="pl-error"></div>
+
+      <div class="pl-result" id="pl-result">
+        <h3>计算结果（对照 PinkLock 官网填写）</h3>
+        <div class="pl-row">
+          <div class="pl-row-label">TGE 百分比</div>
+          <div class="pl-row-right">
+            <div class="pl-row-val" id="pl-tgeVal">0.01%</div>
+            <div class="pl-row-pos">填入官网的 TGE Percent 框</div>
+          </div>
+        </div>
+        <div class="pl-row">
+          <div class="pl-row-label">周期释放百分比</div>
+          <div class="pl-row-right">
+            <div class="pl-row-val" id="pl-cycleVal">0.000%</div>
+            <div class="pl-row-pos">填入官网的 Cycle Release Percent 框</div>
+          </div>
+        </div>
+        <div class="pl-row">
+          <div class="pl-row-label">总共需要释放期数</div>
+          <div class="pl-row-right">
+            <div class="pl-row-val" id="pl-periodsVal">0 期</div>
+            <div class="pl-row-pos">仅供核对，无需填写</div>
+          </div>
+        </div>
+        <div class="pl-row">
+          <div class="pl-row-label">每期实际释放数量</div>
+          <div class="pl-row-right">
+            <div class="pl-row-val" id="pl-perVal">0.0000 个</div>
+            <div class="pl-row-pos">仅供核对，无需填写</div>
+          </div>
+        </div>
+        <div class="pl-note">💡 周期释放百分比已向下截断，确保各项相加不超过 100%。TGE 固定 0.01%，剩余 99.99% 平摊到每一期。</div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var $ = function(id){ return document.getElementById(id); };
+      function trunc3(x){ return Math.floor(x * 1000 + 1e-9) / 1000; }
+      $('pl-calcBtn').addEventListener('click', function(){
+        var amount = parseFloat($('pl-amount').value);
+        var years  = parseFloat($('pl-years').value);
+        var months = parseFloat($('pl-months').value);
+        var cycle  = parseFloat($('pl-cycle').value);
+        var err = $('pl-error');
+        err.classList.remove('show');
+        if ([amount, years, months, cycle].some(function(v){ return isNaN(v); })) {
+          err.textContent = '请把 4 个框都填好数字再算～';
+          err.classList.add('show'); return;
+        }
+        if (amount <= 0) {
+          err.textContent = '锁仓总数量要大于 0';
+          err.classList.add('show'); return;
+        }
+        var totalDays = years * 365 + months * 30;
+        if (totalDays <= 0 || cycle <= 0) {
+          err.textContent = '锁仓时间或释放周期不能为 0，算不出期数';
+          err.classList.add('show'); return;
+        }
+        var periods = Math.floor(totalDays / cycle);
+        if (periods < 1) {
+          err.textContent = '释放周期比锁仓总天数还大，算不出期数';
+          err.classList.add('show'); return;
+        }
+        var tge = 0.01;
+        var cyclePct = trunc3(99.99 / periods);
+        var perAmount = amount * (cyclePct / 100);
+        $('pl-tgeVal').textContent = tge.toFixed(2) + '%';
+        $('pl-cycleVal').textContent = cyclePct.toFixed(3) + '%';
+        $('pl-periodsVal').textContent = periods + ' 期';
+        $('pl-perVal').textContent = perAmount.toFixed(4) + ' 个';
+        $('pl-result').classList.add('show');
+      });
+    })();
+    </script>
+
+
     <!--SHOWCASE_START-->
     <div class="section-label">Showcase</div>
     <div class="section-title">地推风采 · 全国城市实拍</div>
