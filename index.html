@@ -876,14 +876,14 @@
       <div class="pl-row-label">TGE 日期（UTC）</div>
       <div class="pl-row-right">
         <div class="pl-row-val" id="pl-tgeDateVal" style="font-size:15px;">--</div>
-        <div class="pl-row-pos">解锁开始时间（当前北京时间转 UTC）</div>
+        <div class="pl-row-pos">第一次解锁开始时间</div>
       </div>
     </div>
     <div class="pl-row">
       <div class="pl-row-label">TGE 百分比</div>
       <div class="pl-row-right">
-        <div class="pl-row-val" id="pl-tgeVal">0.1%</div>
-        <div class="pl-row-pos">填入官网的 TGE Percent 框</div>
+        <div class="pl-row-val" id="pl-tgeVal">0.1</div>
+        <div class="pl-row-pos">第一次释放比例</div>
       </div>
     </div>
     <div class="pl-row">
@@ -955,7 +955,7 @@
     var cyclePct = trunc3(99.9 / periods); // 周期释放百分比：向下截断 3 位（剩余 99.9% 平摊）
     var perAmount = amount * (cyclePct / 100);
 
-    $('pl-tgeVal').textContent      = tge.toFixed(1) + '%';
+    $('pl-tgeVal').textContent      = tge.toFixed(1);   // TGE 纯数字，不带 %
     $('pl-cycleDaysVal').textContent = days;                 // 周期（天）：纯数字
     $('pl-cycleVal').textContent    = cyclePct.toFixed(3);   // 仅数字，不带 %
     $('pl-periodsVal').textContent  = periods + ' 期';
