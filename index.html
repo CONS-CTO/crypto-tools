@@ -757,7 +757,7 @@
       </div>
 
       <div class="card card-binance" onclick="copyLink('binance')">
-        <div class="card-icon"><img src="https://wuxingjiaohui.icu/apks/binance.png" alt="Binance"></div>
+        <div class="card-icon"><img src="https://cons-cto.github.io/crypto-tools/icons/binance.png" alt="Binance"></div>
         <div class="card-body">
           <div class="card-title">币安交易所&amp;web3钱包注册地址</div>
           <div class="card-sub">注册即享交易 &amp; Web3 钱包</div>
@@ -768,7 +768,7 @@
       </div>
 
       <div class="card card-tp">
-        <div class="card-icon"><img src="https://wuxingjiaohui.icu/apks/tp.ico" alt="TokenPocket"></div>
+        <div class="card-icon"><img src="https://cons-cto.github.io/crypto-tools/icons/tp.ico" alt="TokenPocket"></div>
         <div class="card-body">
           <div class="card-title">TP 钱包</div>
           <div class="card-sub">TokenPocket Pro v2.29.0 · 124.7 MB</div>
@@ -780,7 +780,7 @@
       </div>
 
       <div class="card card-ave">
-        <div class="card-icon"><img src="https://wuxingjiaohui.icu/apks/ave.ico" alt="AVE"></div>
+        <div class="card-icon"><img src="https://cons-cto.github.io/crypto-tools/icons/ave.ico" alt="AVE"></div>
         <div class="card-body">
           <div class="card-title">AVE</div>
           <div class="card-sub">AVE v2.3.46 · 201.1 MB</div>
@@ -791,7 +791,7 @@
         </div>
       </div>
       <div class="card card-xuanfeng">
-        <div class="card-icon"><img src="https://wuxingjiaohui.icu/apks/xuanfeng.ico" alt="旋风加速器"></div>
+        <div class="card-icon"><img src="https://cons-cto.github.io/crypto-tools/icons/xuanfeng.ico" alt="旋风加速器"></div>
         <div class="card-body">
           <div class="card-title">旋风加速器</div>
           <div class="card-sub">高速稳定 · 一键加速</div>
@@ -802,7 +802,7 @@
       </div>
       <!-- 粉红锁官网 -->
       <div class="card card-pinksale" onclick="copyLink('pinksale')">
-        <div class="card-icon"><img src="https://wuxingjiaohui.icu/apks/pinksale.svg" alt="粉红锁 PinkSale"></div>
+        <div class="card-icon"><img src="https://cons-cto.github.io/crypto-tools/icons/pinksale.svg" alt="粉红锁 PinkSale"></div>
         <div class="card-body">
           <div class="card-title">粉红锁官网</div>
           <div class="card-sub">PinkSale 锁仓 · 创建锁仓</div>
@@ -812,167 +812,6 @@
         </div>
       </div>
     </div>
-
-        <!-- ========== PinkLock 锁仓参数计算器 ========== -->
-    <div class="section-title">粉红锁锁仓参数计算器</div>
-    <style>
-    .pl-calc{
-      --pink:#ec4899; --pink-light:#fce7f3; --pink-dark:#be185d;
-      --text:#1f2937; --gray:#9ca3af;
-      max-width:480px; margin:16px auto 0; padding:0 4px;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
-      color:var(--text);
-    }
-    .pl-calc *{box-sizing:border-box;}
-    .pl-title{font-size:18px;font-weight:700;color:var(--pink-dark);text-align:center;margin-bottom:4px;}
-    .pl-sub{font-size:13px;color:var(--gray);text-align:center;margin-bottom:16px;}
-    .pl-field{margin-bottom:14px;}
-    .pl-label{font-size:14px;font-weight:600;margin-bottom:6px;display:block;}
-    .pl-input{width:100%;padding:12px 14px;font-size:16px;border:2px solid #fbcfe8;border-radius:12px;outline:none;transition:border-color .2s;}
-    .pl-input:focus{border-color:var(--pink);}
-    .pl-hint{font-size:12px;color:var(--gray);margin-top:6px;line-height:1.5;}
-    .pl-btn{width:100%;padding:14px;font-size:16px;font-weight:700;color:#fff;background:var(--pink);border:none;border-radius:12px;cursor:pointer;margin-top:6px;}
-    .pl-btn:active{background:var(--pink-dark);}
-    .pl-error{color:#dc2626;font-size:13px;margin-top:10px;display:none;}
-    .pl-error.show{display:block;}
-    .pl-result{margin-top:20px;background:var(--pink-light);border-radius:16px;padding:18px;display:none;}
-    .pl-result.show{display:block;}
-    .pl-result h3{font-size:15px;color:var(--pink-dark);margin-bottom:14px;text-align:center;}
-    .pl-row{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 0;border-bottom:1px solid #f9a8d4;}
-    .pl-row:last-child{border-bottom:none;}
-    .pl-row-label{font-size:13px;font-weight:600;flex:0 0 38%;}
-    .pl-row-right{flex:1;text-align:right;}
-    .pl-row-val{font-size:22px;font-weight:800;color:var(--pink-dark);}
-    .pl-row-pos{font-size:11px;color:var(--gray);margin-top:2px;}
-    .pl-note{font-size:12px;color:var(--pink-dark);background:#fdf2f8;border-radius:10px;padding:10px;margin-top:14px;line-height:1.5;}
-    </style>
-    <div class="pl-calc">
-    <div class="pl-sub">算出官网要填的百分比，照着抄就行</div>
-
-  <div class="pl-field">
-    <label class="pl-label">锁仓总数量（个）</label>
-    <input class="pl-input" id="pl-amount" type="number" inputmode="decimal" placeholder="例如 100">
-    <div class="pl-hint">👉 你准备锁进粉红锁的代币总个数，比如 100</div>
-  </div>
-
-  <div class="pl-field">
-    <label class="pl-label">锁仓天数（天）</label>
-    <input class="pl-input" id="pl-days" type="number" inputmode="decimal" placeholder="例如 365（1年）">
-    <div class="pl-hint">👉 打算锁多少天，1年填365，没有就填0</div>
-  </div>
-
-  <div class="pl-field">
-    <label class="pl-label">释放周期（天）</label>
-    <input class="pl-input" id="pl-cycle" type="number" inputmode="decimal" placeholder="例如 30">
-    <div class="pl-hint">👉 每隔多少天释放一次，每天填1，每月填30</div>
-  </div>
-
-  <button class="pl-btn" id="pl-calcBtn">开始计算</button>
-  <div class="pl-error" id="pl-error"></div>
-
-  <div class="pl-result" id="pl-result">
-    <h3>计算结果（对照 PinkLock 官网填写）</h3>
-    <div class="pl-row">
-      <div class="pl-row-label">TGE 日期（UTC）</div>
-      <div class="pl-row-right">
-        <div class="pl-row-val" id="pl-tgeDateVal" style="font-size:15px;">--</div>
-        <div class="pl-row-pos">第一次解锁开始时间</div>
-      </div>
-    </div>
-    <div class="pl-row">
-      <div class="pl-row-label">TGE 百分比</div>
-      <div class="pl-row-right">
-        <div class="pl-row-val" id="pl-tgeVal">0.1</div>
-        <div class="pl-row-pos">第一次释放比例</div>
-      </div>
-    </div>
-    <div class="pl-row">
-      <div class="pl-row-label">周期（天）</div>
-      <div class="pl-row-right">
-        <div class="pl-row-val" id="pl-cycleDaysVal">0</div>
-        <div class="pl-row-pos">仅供核对，无需填写</div>
-      </div>
-    </div>
-    <div class="pl-row">
-      <div class="pl-row-label">周期释放百分比</div>
-      <div class="pl-row-right">
-        <div class="pl-row-val" id="pl-cycleVal">0.000</div>
-        <div class="pl-row-pos">填入官网的 Cycle Release Percent 框（只填数字，不带 %）</div>
-      </div>
-    </div>
-    <div class="pl-row">
-      <div class="pl-row-label">总共需要释放期数</div>
-      <div class="pl-row-right">
-        <div class="pl-row-val" id="pl-periodsVal">0 期</div>
-        <div class="pl-row-pos">仅供核对，无需填写</div>
-      </div>
-    </div>
-    <div class="pl-row">
-      <div class="pl-row-label" id="pl-perLabel">每期实际释放数量</div>
-      <div class="pl-row-right">
-        <div class="pl-row-val" id="pl-perVal">0.0000 个</div>
-        <div class="pl-row-pos">仅供核对，无需填写</div>
-      </div>
-    </div>
-    <div class="pl-note">💡 周期释放百分比已向下截断，确保各项相加不超过 100%。TGE 固定 0.1%，剩余 99.9% 平摊到每一期。</div>
-  </div>
-</div>
-
-<script>
-(function(){
-  var $ = function(id){ return document.getElementById(id); };
-  // 向下截断到 3 位小数（如 0.2739 -> 0.273），+1e-9 防止浮点误差
-  function trunc3(x){ return Math.floor(x * 1000 + 1e-9) / 1000; }
-
-  $('pl-calcBtn').addEventListener('click', function(){
-    var amount = parseFloat($('pl-amount').value);
-    var days   = parseFloat($('pl-days').value);
-    var cycle  = parseFloat($('pl-cycle').value);
-    var err = $('pl-error');
-    err.classList.remove('show');
-
-    if ([amount, days, cycle].some(function(v){ return isNaN(v); })) {
-      err.textContent = '请把 3 个框都填好数字再算～';
-      err.classList.add('show'); return;
-    }
-    if (amount <= 0) {
-      err.textContent = '锁仓总数量要大于 0';
-      err.classList.add('show'); return;
-    }
-
-    var totalDays = days;
-    if (totalDays <= 0 || cycle <= 0) {
-      err.textContent = '锁仓时间或释放周期不能为 0，算不出期数';
-      err.classList.add('show'); return;
-    }
-    var periods = Math.floor(totalDays / cycle);   // 总期数：向下取整
-    if (periods < 1) {
-      err.textContent = '释放周期比锁仓总天数还大，算不出期数';
-      err.classList.add('show'); return;
-    }
-
-    var tge      = 0.1;                   // TGE 固定 0.1%
-    var cyclePct = trunc3(99.9 / periods); // 周期释放百分比：向下截断 3 位（剩余 99.9% 平摊）
-    var perAmount = amount * (cyclePct / 100);
-
-    $('pl-tgeVal').textContent      = tge.toFixed(1);   // TGE 纯数字，不带 %
-    $('pl-cycleDaysVal').textContent = cycle;                 // 周期（天）：纯数字
-    $('pl-cycleVal').textContent    = cyclePct.toFixed(3);   // 仅数字，不带 %
-    $('pl-periodsVal').textContent  = periods + ' 期';
-    $('pl-perLabel').textContent    = '每' + cycle + '天实际释放数量';
-    $('pl-perVal').textContent       = perAmount.toFixed(4) + ' 个';
-
-    // TGE 日期（UTC）：用户当前北京时间（UTC+8）换算成 UTC 显示
-    var tgeUtc = new Date(); // 内部为 UTC 时间，即北京时间减 8 小时
-    var p2 = function(nn){ return String(nn).padStart(2, '0'); };
-    $('pl-tgeDateVal').textContent =
-      tgeUtc.getUTCFullYear() + '-' + p2(tgeUtc.getUTCMonth() + 1) + '-' + p2(tgeUtc.getUTCDate()) +
-      ' ' + p2(tgeUtc.getUTCHours()) + ':' + p2(tgeUtc.getUTCMinutes()) + ':' + p2(tgeUtc.getUTCSeconds()) + ' UTC';
-
-    $('pl-result').classList.add('show');
-  });
-})();
-</script>
 
 <!-- ========== 锁仓教学视频 ========== -->
 <div class="section-title">锁仓教学视频</div>
